@@ -133,4 +133,11 @@ public class ComentarioDTO {
     public void setUsuario(NormalDTO usuario) {
         this.usuario = usuario;
     }
+
+    @Override
+    public String toString() {
+        return "ComentarioDTO{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", respuestas=" + respuestas + ", respuesta=" + respuesta + ", post=" + post + ", usuario=" + usuario + '}';
+    }
+    
+    
 }

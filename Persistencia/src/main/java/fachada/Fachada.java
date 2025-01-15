@@ -607,7 +607,7 @@ public class Fachada implements IFachada {
             postsDAO.desanclarPost(comun, anclado);
         } catch (PersistenciaException ex) {
             Logger.getLogger(FachadaException.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   
     }
 
 }

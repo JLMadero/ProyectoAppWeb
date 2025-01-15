@@ -57,6 +57,11 @@ public class MunicipioDTO {
         final MunicipioDTO other = (MunicipioDTO) obj;
         return Objects.equals(this.nombre, other.nombre);
     }
+
+    @Override
+    public String toString() {
+        return "MunicipioDTO{" + "nombre=" + nombre + ", usuarios=" + usuarios + ", estado=" + estado + '}';
+    }
     
     
 }

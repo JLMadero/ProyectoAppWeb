@@ -155,4 +155,11 @@ public class PostDTO {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    @Override
+    public String toString() {
+        return "PostDTO{" + "id=" + id + ", fechaHoraCreacion=" + fechaHoraCreacion + ", titulo=" + titulo + ", subtitulo=" + subtitulo + ", contenido=" + contenido + ", categoria=" + categoria + ", imagen=" + imagen + ", comentarios=" + comentarios + ", usuario=" + usuario + '}';
+    }
+    
+    
 }

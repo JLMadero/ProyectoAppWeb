@@ -37,4 +37,6 @@ public class AncladoDTO extends PostDTO{
                 imagen);
     }
     
+    
+    
 }

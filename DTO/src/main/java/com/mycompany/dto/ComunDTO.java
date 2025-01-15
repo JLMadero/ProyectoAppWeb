@@ -54,5 +54,7 @@ public class ComunDTO extends PostDTO{
                 imagen);
     }
     
+    
+    
 }
 

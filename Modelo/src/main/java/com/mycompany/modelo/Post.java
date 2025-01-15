@@ -62,7 +62,7 @@ public class Post implements Serializable {
     @Column(name = "categoria", nullable = false)
     protected CategoriaPost categoria;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Comentario> comentarios;
 
     @ManyToOne

@@ -126,4 +126,11 @@ public class UsuarioDTO {
     public List<PostDTO> getPosts() {
         return posts;
     }
+
+    @Override
+    public String toString() {
+        return "UsuarioDTO{" + "nombres=" + nombres + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", correo=" + correo + ", contrasenia=" + contrasenia + ", telefono=" + telefono + ", nombreUsuario=" + nombreUsuario + ", avatar=" + avatar + ", ciudad=" + ciudad + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero +  ", municipio=" + municipio + '}';
+    }
+    
+    
 }

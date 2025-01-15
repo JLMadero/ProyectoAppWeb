@@ -31,5 +31,10 @@ public class AdministradorDTO extends UsuarioDTO{
     public List<AncladoDTO> getPostsAnclados() {
         return postsAnclados;
     }
+
+    @Override
+    public String toString() {
+        return "AdministradorDTO{" + "postsAnclados=" + postsAnclados + '}';
+    }
     
 }

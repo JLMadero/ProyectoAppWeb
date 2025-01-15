@@ -17,7 +17,7 @@ public class Conexion implements IConexion {
     @Override
     public EntityManager crearConexion() {
         // Creamos el EntityManagerFactory.
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("TheMusicHubPU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("DbAstro");
         
         // Creamos el EntityManager.
         EntityManager em = emf.createEntityManager();

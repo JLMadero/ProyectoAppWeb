@@ -30,4 +30,6 @@ public class NormalDTO extends UsuarioDTO {
     public List<ComentarioDTO> getComentarios() {
         return comentarios;
     }
+
+    
 }

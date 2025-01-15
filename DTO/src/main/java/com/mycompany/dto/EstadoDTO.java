@@ -55,6 +55,13 @@ public class EstadoDTO {
         final EstadoDTO other = (EstadoDTO) obj;
         return Objects.equals(this.nombre, other.nombre);
     }
+
+    @Override
+    public String toString() {
+        return "EstadoDTO{" + "nombre=" + nombre + ", municipios=" + municipios + '}';
+    }
+    
+    
     
     
 

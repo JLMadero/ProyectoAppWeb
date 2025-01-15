@@ -41,14 +41,14 @@ public class Comentario implements Serializable {
     @Column(name = "contenido", nullable = false, length = 200)
     private String contenido;
 
-    @OneToMany(mappedBy = "respuesta", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comentario> respuestas;
 
     @ManyToOne
     @JoinColumn(name = "id_respuesta")
     private Comentario respuesta;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "id_post")
     private Post post;
 
@@ -129,51 +129,7 @@ public class Comentario implements Serializable {
         this.usuario = usuario;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.id);
-        hash = 47 * hash + Objects.hashCode(this.fechaHora);
-        hash = 47 * hash + Objects.hashCode(this.contenido);
-        hash = 47 * hash + Objects.hashCode(this.respuestas);
-        hash = 47 * hash + Objects.hashCode(this.respuesta);
-        hash = 47 * hash + Objects.hashCode(this.post);
-        hash = 47 * hash + Objects.hashCode(this.usuario);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Comentario other = (Comentario) obj;
-        if (!Objects.equals(this.contenido, other.contenido)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.fechaHora, other.fechaHora)) {
-            return false;
-        }
-        if (!Objects.equals(this.respuestas, other.respuestas)) {
-            return false;
-        }
-        if (!Objects.equals(this.respuesta, other.respuesta)) {
-            return false;
-        }
-        if (!Objects.equals(this.post, other.post)) {
-            return false;
-        }
-        return Objects.equals(this.usuario, other.usuario);
-    }
+    
 
     @Override
     public String toString() {
