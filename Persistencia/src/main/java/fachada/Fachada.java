@@ -97,20 +97,20 @@ public class Fachada implements IFachada {
     public void publicarPost(ComunDTO post) throws FachadaException {
         CategoriaPost categoria;
         switch (post.getCategoria().toUpperCase()) {
-            case "GENERAL":
-                categoria = CategoriaPost.GENERAL;
-                break;
-            case "NOTICIA":
+            case "NOTICIAS":
                 categoria = CategoriaPost.NOTICIAS;
                 break;
-            case "PLAYLIST":
-                categoria = CategoriaPost.PLAYLIST;
+            case "FENOMENO":
+                categoria = CategoriaPost.FENOMENOS;
                 break;
-            case "REVIEW":
-                categoria = CategoriaPost.REVIEWS;
+            case "PLANETAS":
+                categoria = CategoriaPost.PLANETAS;
+                break;
+            case "DESCUBRIMIENTOS":
+                categoria = CategoriaPost.DESCUBRIMIENTO;
                 break;
             default:
-                categoria = CategoriaPost.GENERAL;
+                categoria = CategoriaPost.INICIO;
         }
 
         try {

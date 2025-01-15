@@ -9,6 +9,6 @@ package com.mycompany.modelo;
  * @author Jose Madero
  */
 public enum CategoriaPost {
-    PLAYLIST, REVIEWS, NOTICIAS, GENERAL
+    INICIO, NOTICIAS, FENOMENOS, PLANETAS, DESCUBRIMIENTO
     
 }
