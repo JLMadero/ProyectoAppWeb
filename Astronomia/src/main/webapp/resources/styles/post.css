@@ -48,12 +48,12 @@ form input[type="text"]{
 }
 form input[type="file"]{
     padding: 1rem;
-    color: transparent;
+    color: #FFFFFF;
     font-size: 20px;
     border-radius: 20px;
 }
 form select{
-    color: #FFFFFF;
+    color: #100F0F;
     font-size: 24px;
     padding: 1rem;
     border-radius: 20px;
