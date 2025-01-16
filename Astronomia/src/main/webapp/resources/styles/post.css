@@ -1,0 +1,98 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 ene 2025, 01:42:59
+    Author     : jl4ma
+*/
+h2{
+    padding-top: 1rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 64px;
+}
+.crearPost{
+    background-color: #100F0F;
+    margin-right: 4rem;
+    margin-left: 5rem;
+    margin-top: 3.5rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    
+}
+form{
+   display: flex;
+    flex-direction: column; 
+}
+label{
+    font-size: 32px;
+}
+.imgTipo{
+    display: flex; /* Organiza los elementos en filas o columnas */
+    flex-direction: row; /* Coloca las columnas lado a lado */
+    gap: 15rem;
+    margin-bottom: 2rem;
+}
+.imgTipo div{
+    display: flex;
+    flex-direction: column; 
+}
+form input[type="text"]{
+    font-size: 24px;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+form input[type="file"]{
+    padding: 1rem;
+    color: transparent;
+    font-size: 20px;
+    border-radius: 20px;
+}
+form select{
+    color: #FFFFFF;
+    font-size: 24px;
+    padding: 1rem;
+    border-radius: 20px;
+}
+.botones{
+    display: flex; /* Organiza los elementos en filas o columnas */
+    flex-direction: row; /* Coloca las columnas lado a lado */
+    gap: 3rem;
+    text-align: center;
+    justify-content: center;
+    
+}
+form input[type="submit"]{
+    font-family: "Goblin One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #FFFFFF;
+    font-size: 26px;
+    background-color: #A98FF6;
+    border-radius: 15px;
+    padding: 1rem;
+}
+form input[type="reset"]{
+    font-family: "Goblin One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #FFFFFF;
+    font-size: 26px;
+    background-color: #F53952;
+    border-radius: 15px;
+    padding: 1rem;
+}
+form textArea{
+    width: 950px; /* Ancho equivalente a "cols" */
+    height: 160px; /* Alto equivalente a "rows" */
+    font-size: 16px; /* Tamaño de texto */
+    line-height: 20px; /* Altura de línea que afecta a cada fila */
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    
+}

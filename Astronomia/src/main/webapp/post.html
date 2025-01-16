@@ -5,10 +5,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Crear Post - Jose Madero</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/styles/general.css"/>
+        <link rel="stylesheet" href="resources/styles/general.css"/>
+        <link rel="stylesheet" href="resources/styles/post.css"/>
 
     </head>
     <body>
@@ -16,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <h1>ASTRONOMIA BLOG</h1>
             <div class="perfil">
                 <div>
-                <img src="resources/imgs/galaxia.webp" alt="galaxy"/>
+                    <img src="resources/imgs/galaxia.webp" alt="galaxy"/>
                 </div>
                 <div>
                     <p><a class="palabra" href="perfil.html">Perfil</a></p>
@@ -24,28 +25,57 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </div>
         </section>
         <div class="contenido">
-            
-            
-        <div class="left-side">
-            <nav>
-                <a href="inicio.html">Inicio</a>
-                <a href="noticias.html">Noticias Astronómicas</a>
-                <a href="fenomenos.html">Fenómenos Celestiales</a>
-                <a href="planetas.html">Planetas</a>
-                <a href="descubrimientos.html">Descubrimientos</a>
-                <div class="linea"></div>
-                <a class="out" href="index.html">Cerrar Sesión</a>
-            </nav>
-        </div> 
-            
-            
-        
-    
-        
-        <div class="right-side">
-        </div>
-            
-            
+
+
+            <div class="left-side">
+                <nav>
+                    <a href="inicio.html">Inicio</a>
+                    <a href="noticias.html">Noticias Astronómicas</a>
+                    <a href="fenomenos.html">Fenómenos Celestiales</a>
+                    <a href="planetas.html">Planetas</a>
+                    <a href="descubrimientos.html">Descubrimientos</a>
+                    <div class="linea"></div>
+                    <a class="out" href="index.html">Cerrar Sesión</a>
+                </nav>
             </div> 
+
+
+
+
+
+            <div class="right-side">
+                <div class="crearPost">
+                    <h2>Nuevo Post:</h2>
+                    <form action="inicio.html">
+                        <label for="titulo">Titulo</label>
+                        <input type="text" name="titulo">
+                        <label for="contenido">Contenido</label>
+                        <textarea id="contenido" name="contenido"></textarea>
+                        <div class="imgTipo">
+                            <div>
+                                <label for="imagen">Imagen</label>
+                                <input type="file" name="imagenPost">
+                            </div>
+                            <div>
+                                <label for="tipoPost">Tipo</label>  
+                                <select id="opciones" name="opciones">
+                                    <option value="NOTICIAS">Noticias Astronómicas</option>
+                                    <option value="FENOMENOS">Fenómenos Celestiales</option>
+                                    <option value="PLANETAS">Planetas</option>
+                                    <option value="DESCUBRIMIENTOS">Descubrimientos</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="botones">
+                            <input type="submit" value="Postear">
+                            <input type="reset" value="Limpiar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div> 
     </body>
 </html>
