@@ -19,6 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex; /* Organiza los elementos en filas o columnas */
     flex-direction: row; /* Coloca las columnas lado a lado */
     gap: 1rem;
+    margin-bottom: 2rem;
 }
 
 .postComun{
