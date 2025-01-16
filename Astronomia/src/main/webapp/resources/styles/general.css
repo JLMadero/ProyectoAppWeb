@@ -1,0 +1,120 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 15 ene 2025, 20:50:59
+    Author     : jl4ma
+*/
+@import url('https://fonts.googleapis.com/css2?family=Goblin+One&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    margin: 0; 
+    padding: 0; 
+    background-image: url('../imgs/fondo.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    font-family: "Goblin One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #FFFFFF; 
+}
+.encabezado{
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: 37rem; /* Espaciado entre columnas */
+    background-color: #100F0F;
+    padding: 1rem;
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+}
+h1{
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    font-size: 64px;
+}
+.perfil{
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: 2rem; /* Espaciado entre columnas */
+    margin-bottom: 0;
+    padding-bottom: 0;
+    
+}
+.perfil img{
+     width: 120px; 
+     height: 95px; 
+     border-radius: 50%; 
+}
+.perfil p{
+    margin: 0;
+    padding: 0;
+    padding-top: 1.5rem;
+    color: #5611E1;
+    
+}
+.palabra{
+    font-size: 44px;
+}
+.palabra:hover{
+    color: #FFFFFF;
+}
+.left-side {
+    width:  35%;
+}
+
+.right-side {
+    width: 65%;
+}
+nav{
+    position: fixed;
+    background-color: #100F0F;
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+    margin-left: 5rem;
+    padding-top: 2rem;
+    border-radius: 4rem;
+}
+ nav a:hover {
+            background-color: white;
+            color: #5611E1;
+            border-radius: 3rem;
+        }
+
+/*         Clase activa para el enlace seleccionado 
+        nav a.active {
+            background-color: white;  Fondo blanco 
+            color: #333;  Texto oscuro 
+        }*/
+a{
+    color: #5611E1;
+    font-size: 32px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    text-decoration: none;
+}
+.linea{
+    background-color: #000000;
+    padding: 0.5rem;
+    padding-left: 19rem;
+    padding-right:  19rem;
+    
+}
+.out{
+    color: #8A0404;
+    padding-bottom: 2rem;
+}
+.out:hover{
+    background: none;
+    color: inherit;
+}
+
+
