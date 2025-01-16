@@ -15,7 +15,7 @@ body {
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
-    height: 100vh;
+    height: 100%;
     font-family: "Goblin One", serif;
     font-weight: 400;
     font-style: normal;
@@ -63,13 +63,17 @@ h1{
 .palabra:hover{
     color: #FFFFFF;
 }
+.contenido {
+    display: flex; /* Organiza los elementos en filas o columnas */
+    flex-direction: row; /* Coloca las columnas lado a lado */
+    justify-content: space-between; /* Espacia las columnas */
+    align-items: flex-start; /* Alinea al inicio verticalmente */
+    gap: 7rem;
+}
 .left-side {
     width:  35%;
 }
 
-.right-side {
-    width: 65%;
-}
 nav{
     position: fixed;
     background-color: #100F0F;
@@ -117,4 +121,17 @@ a{
     color: inherit;
 }
 
+.right-side {
+    width: 65%;
+}
+.agregar{
+    position: fixed; /* Fija la imagen en la pantalla */
+    bottom: 1rem; /* Distancia desde la parte inferior */
+    right: 1rem; /* Distancia desde la parte derecha */
+    width: 100px; /* Ajusta el tamaño de la imagen */
+    height: 100px; /* Hace que la imagen sea cuadrada */
+    border-radius: 50%; /* Hace la imagen circular */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+    border: 2px solid white; /* Opcional: Añade un borde */
+}
 

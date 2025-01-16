@@ -1,0 +1,66 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 ene 2025, 00:16:53
+    Author     : jl4ma
+*/
+.avatar{
+    display: flex; /* Organiza los elementos en filas o columnas */
+    flex-direction: row; /* Coloca las columnas lado a lado */
+    align-items: center; /* Alinea al inicio verticalmente */
+    justify-content: center;
+    gap: 4rem;
+    padding-top: 2rem;
+}
+.avatar img{
+    width: 220px; 
+     height: 200px; 
+     border-radius: 50%; 
+}
+.user{
+    color: #FFFFFF;
+    font-size: 48px;
+}
+.locacion{
+    color: #FFFFFF;
+    font-size: 24px;
+}
+.post{
+    display: flex;  
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.fotoPost{
+    width: 1100px; 
+     height: 300px;
+     padding-bottom: 1rem;
+}
+.tituloPost{
+    font-size: 20px;
+}
+.numero{
+   font-size: 24px; 
+}
+.editar{
+    font-family: "Goblin One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #000000;
+    font-size: 24px;
+    background-color: #A98FF6;
+    border-radius: 20px;
+    padding: 1rem;
+}
+.eliminar{
+    font-family: "Goblin One", serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #FFFFFF;
+    font-size: 24px;
+    background-color: #FF0000;
+    border-radius: 20px;
+    padding: 1rem;
+}
