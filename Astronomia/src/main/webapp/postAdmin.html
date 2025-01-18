@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Crear Post Admin - Jose Madero</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="resources/styles/general.css"/>
+        <link rel="stylesheet" href="resources/styles/post.css"/>
+
+    </head>
+    <body>
+        <section class="encabezado">
+            <h1>ASTRONOMIA BLOG</h1>
+            <div class="perfil">
+                <div>
+                    <img src="resources/imgs/galaxia.webp" alt="galaxy"/>
+                </div>
+                <div>
+                    <p><a class="palabra" href="perfil.html">Perfil</a></p>
+                </div>
+            </div>
+        </section>
+        <div class="contenido">
+
+
+            <div class="left-side">
+                <nav>
+                    <a href="inicio.html">Inicio</a>
+                    <a href="noticias.html">Noticias Astronómicas</a>
+                    <a href="fenomenos.html">Fenómenos Celestiales</a>
+                    <a href="planetas.html">Planetas</a>
+                    <a href="descubrimientos.html">Descubrimientos</a>
+                    <div class="linea"></div>
+                    <a class="out" href="index.html">Cerrar Sesión</a>
+                </nav>
+            </div> 
+
+
+
+
+
+            <div class="right-side">
+                <div class="crearPost">
+                    <h2>Nuevo Post:</h2>
+                    <form action="inicio.html">
+                        <label for="titulo">Titulo</label>
+                        <input type="text" name="titulo" required>
+                        <label for="contenido">Contenido</label>
+                        <textarea id="contenido" name="contenido" required></textarea>
+                        <div class="imgTipo">
+                            <div>
+                                <label for="imagen">Imagen</label>
+                                <input type="file" name="imagenPost" required>
+                            </div>
+                            <div>
+                                <label for="tipoPost">Tipo</label>  
+                                <select id="opciones" name="opciones" required>
+                                    <option value="" disabled selected>Selecciona una opción</option>
+                                    <option value="NOTICIAS">Noticias Astronómicas</option>
+                                    <option value="FENOMENOS">Fenómenos Celestiales</option>
+                                    <option value="PLANETAS">Planetas</option>
+                                    <option value="DESCUBRIMIENTOS">Descubrimientos</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="botones">
+                            <input type="submit" value="Anclar">
+                            <input type="submit" value="Postear">
+                            <input type="reset" value="Limpiar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div> 
+    </body>
+</html>
+

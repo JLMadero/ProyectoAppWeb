@@ -1,0 +1,11 @@
+com\mycompany\modelo\CategoriaPost.class
+com\mycompany\modelo\Comun.class
+com\mycompany\modelo\Usuario.class
+com\mycompany\modelo\Municipio.class
+com\mycompany\modelo\Comentario.class
+com\mycompany\modelo\Modelo.class
+com\mycompany\modelo\Estado.class
+com\mycompany\modelo\Administrador.class
+com\mycompany\modelo\Anclado.class
+com\mycompany\modelo\Normal.class
+com\mycompany\modelo\Post.class
