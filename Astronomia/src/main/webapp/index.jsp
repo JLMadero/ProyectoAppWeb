@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 17 ene 2025, 22:47:06
+    Author     : jl4ma
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +17,7 @@
         <p class="blog">BLOG</p>
         
         
-            <form action="inicio.html">
+            <form action="inicio.jsp">
                 <div class="form-gruop">
                     <label class="correo" for="correo">CORREO:</label>
                 <input type="email" name="correo" required>
@@ -24,7 +31,7 @@
                 </div>
                 
             </form>
-            <p class="link">¿No tienes cuenta?, registrate <a href="registrarse.html">aquí.</a></p>
+            <p class="link">¿No tienes cuenta?, registrate <a href="registrarse.jsp">aquí.</a></p>
         
     </body>
 </html>

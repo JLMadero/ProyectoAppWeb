@@ -1,8 +1,11 @@
+<%-- 
+    Document   : registrarse
+    Created on : 17 ene 2025, 22:48:37
+    Author     : jl4ma
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
     <head>
         <title>Registrarse - Jose Madero</title>
@@ -16,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         
         <div class="right-side">
             <h1>REGISTRARSE:</h1>
-            <form action="index.html">
+            <form action="index.jsp">
                 
                 <div class="column">
                     <div class="fila">
@@ -96,7 +99,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                     </div>
                 
             </form>
-            <p>Si ya tienes una cuenta, inicia sesion <a href="index.html" target="target">aqui</a></p>
+            <p>Si ya tienes una cuenta, inicia sesion <a href="index.jsp" target="target">aqui</a></p>
 
         </div> 
         

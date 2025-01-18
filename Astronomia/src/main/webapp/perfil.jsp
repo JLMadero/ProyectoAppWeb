@@ -1,8 +1,11 @@
+<%-- 
+    Document   : perfil
+    Created on : 17 ene 2025, 22:48:13
+    Author     : jl4ma
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <html>
     <head>
         <title>Perfil - Jose Madero</title>
@@ -13,30 +16,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
     </head>
     <body>
-        <section class="encabezado">
-            <h1>ASTRONOMIA BLOG</h1>
-            <div class="perfil">
-                <div>
-                <img src="resources/imgs/galaxia.webp" alt="galaxy"/>
-                </div>
-                <div>
-                    <p><a class="palabra" href="perfil.html">Perfil</a></p>
-                </div>
-            </div>
-        </section>
+        <%@include file="./fragmentos/encabezado.xhtml"%>
         <div class="contenido">
             
             
         <div class="left-side">
-            <nav>
-                <a href="inicio.html">Inicio</a>
-                <a href="noticias.html">Noticias Astronómicas</a>
-                <a href="fenomenos.html">Fenómenos Celestiales</a>
-                <a href="planetas.html">Planetas</a>
-                <a href="descubrimientos.html">Descubrimientos</a>
-                <div class="linea"></div>
-                <a class="out" href="index.html">Cerrar Sesión</a>
-            </nav>
+            <%@include file="./fragmentos/navegador.xhtml"%>
         </div> 
             
             
