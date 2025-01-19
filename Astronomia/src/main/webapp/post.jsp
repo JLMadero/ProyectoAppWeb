@@ -31,7 +31,7 @@
             <div class="right-side">
                 <div class="crearPost">
                     <h2>Nuevo Post:</h2>
-                    <form action="inicio.html">
+                    <form action="CrearPost" method="post" enctype="multipart/form-data">
                         <label for="titulo">Titulo</label>
                         <input type="text" name="titulo" required>
                         <label for="contenido">Contenido</label>
@@ -46,7 +46,7 @@
                                 <select id="opciones" name="opciones" required>
                                     <option value="" disabled selected>Selecciona una opción</option>
                                     <option value="NOTICIAS">Noticias Astronómicas</option>
-                                    <option value="FENOMENOS">Fenómenos Celestiales</option>
+                                    <option value="FENOMENO">Fenómenos Celestiales</option>
                                     <option value="PLANETAS">Planetas</option>
                                     <option value="DESCUBRIMIENTOS">Descubrimientos</option>
                                 </select>

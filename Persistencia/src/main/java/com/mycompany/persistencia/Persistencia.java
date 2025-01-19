@@ -90,14 +90,14 @@ public class Persistencia {
 //                   }
 //               }
 
-                //obtener post por usuario
-//                List<PostDTO> post = new ArrayList<>();
-//                post = fachada.obtenerPostsPorUsuario("madero@gmail.com");
-//                for(PostDTO p: post){
-//                    if(p!=null){
-//                        System.out.println(p);
-//                    }
-//                }
+//                obtener post por usuario
+                List<PostDTO> post = new ArrayList<>();
+                post = fachada.obtenerPostsPorUsuario("pipi@123");
+                for(PostDTO p: post){
+                    if(p!=null){
+                        System.out.println(p);
+                    }
+                }
                 
         
     }

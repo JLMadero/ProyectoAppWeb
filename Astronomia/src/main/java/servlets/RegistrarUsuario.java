@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,11 @@ import javax.servlet.http.Part;
  *
  * @author jl4ma
  */
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+    maxFileSize = 1024 * 1024 * 10, // 10MB
+    maxRequestSize = 1024 * 1024 * 50 // 50MB
+)
 public class RegistrarUsuario extends HttpServlet {
 
     
@@ -81,16 +87,13 @@ public class RegistrarUsuario extends HttpServlet {
         
         String nombreUsuario = request.getParameter("usuario");
         String correo = request.getParameter("correo");
-        String contrasenia = request.getParameter("contrasena");
+        String contrasenia = request.getParameter("contra");
         String Confirmarcontrasenia = request.getParameter("confirmar");
         String telefono = request.getParameter("telefono");
         String ciudad = request.getParameter("ciudad");
         String genero = request.getParameter("genero");
-        
-        if(!contrasenia.equalsIgnoreCase(Confirmarcontrasenia)){
+        if(contrasenia.equalsIgnoreCase(Confirmarcontrasenia)){
             
-            response.sendRedirect(request.getContextPath() + "/registrarse.jsp");
-        }
         //PROCESAMIENTO DE LA IMAGEN
         // Se crea la ruta del directorio donde se almacenarán las imagenes
         String rutaDirectorio = getServletContext().getRealPath("/avatares");
@@ -135,13 +138,17 @@ public class RegistrarUsuario extends HttpServlet {
             UsuarioBean bean = new UsuarioBean(nombreUsuario, correo, ciudad, rutaRelativa, tipo);
             HttpSession session = request.getSession();
             session.setAttribute("usuario", bean);
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
+            response.sendRedirect("index.jsp");
         } catch (FachadaException e) {
             System.out.println("EXCEPCION");
             this.getServletContext()
                     .getRequestDispatcher("/registrarse.jsp")
                     .forward(request, response);
         }
+        
+        }else{
+                response.sendRedirect("registrarse.jsp");
+                }
     }
 
     /**

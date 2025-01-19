@@ -17,7 +17,7 @@
         <p class="blog">BLOG</p>
         
         
-        <form action="IniciarSesion" method="POST">
+        <form action="IniciarSesion" method="post">
                 <div class="form-gruop">
                     <label class="correo" for="correo">CORREO:</label>
                 <input type="email" name="correo" required>

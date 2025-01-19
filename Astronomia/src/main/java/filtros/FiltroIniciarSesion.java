@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 public class FiltroIniciarSesion implements Filter {
     
     private static final boolean debug = true;
-    private static final String[] RUTAS_PUBLICAS = {"index.jsp","resources/styles/login.css", "IniciarSesion", "CerrarSesion", "RegistrarUsuario"};
+    private static final String[] RUTAS_PUBLICAS = {"index.jsp","registrarse.jsp","resources/styles/registrarse.css","resources/styles/login.css","resources/imgs/fondo.jpg", "IniciarSesion","CerrarSesion", "RegistrarUsuario","resources/imgs/galaxia.webp", "CerrarSesion", "RegistrarUsuario"};
 
 
     // The filter configuration object we are associated with.  If
@@ -113,8 +113,8 @@ public class FiltroIniciarSesion implements Filter {
         boolean urlPrivada = this.esURLPrivada(ruta);
         boolean logueado = this.estaLogueado(httpRequest);
 
-        if (!logueado && urlPrivada && !ruta.equals("/IniciarRegistrar.jsp")) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/IniciarRegistrar.jsp");
+        if (!logueado && urlPrivada && !ruta.equals("/index.jsp")) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
         } else {
             chain.doFilter(request, response);
         }

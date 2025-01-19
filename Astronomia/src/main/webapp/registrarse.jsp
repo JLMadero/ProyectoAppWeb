@@ -19,7 +19,7 @@
         
         <div class="right-side">
             <h1>REGISTRARSE:</h1>
-            <form action="RegistrarUsuario" enctype="multipart/form-data" method="POST">
+            <form action="RegistrarUsuario" method="post" enctype="multipart/form-data" >
                 
                 <div class="column">
                     <div class="fila">
@@ -72,7 +72,7 @@
                 <div class="column">
                     <div class="fila">
                         <label class="genero" for="genero">Genero:</label>
-                 <input type="text" name="ciudad" required>  
+                 <input type="text" name="genero" required>  
                     </div>
                     <div class="fila">
                         <label class="avatar" for="avatar">Avatar:</label>
