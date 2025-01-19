@@ -60,6 +60,14 @@
         <servlet-name>EditarPost</servlet-name>
         <servlet-class>servlets.EditarPost</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Contenido</servlet-name>
+        <servlet-class>servlets.Contenido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarUsuario</servlet-name>
+        <servlet-class>servlets.RegistrarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CrearPost</servlet-name>
         <url-pattern>/CrearPost</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>EditarPost</servlet-name>
         <url-pattern>/EditarPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Contenido</servlet-name>
+        <url-pattern>/Contenido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarUsuario</servlet-name>
+        <url-pattern>/RegistrarUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

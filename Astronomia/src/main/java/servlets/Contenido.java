@@ -4,26 +4,18 @@
  */
 package servlets;
 
-import Exception.FachadaException;
-import beans.UsuarioBean;
-import com.mycompany.dto.AdministradorDTO;
-import com.mycompany.dto.NormalDTO;
-import com.mycompany.dto.UsuarioDTO;
-import fachada.Fachada;
-import fachada.IFachada;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author jl4ma
  */
-public class IniciarSesion extends HttpServlet {
+public class Contenido extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +30,16 @@ public class IniciarSesion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Contenido</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Contenido at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -68,32 +69,7 @@ public class IniciarSesion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        IFachada accesoDatos = new Fachada();
-        String correo = request.getParameter("correo");
-        String contrasenia = request.getParameter("contra");
-
-        try {
-            UsuarioDTO usuario = accesoDatos.obtenerUsuario(correo, contrasenia);
-            if (usuario != null) {
-                String tipo = "";
-                if (usuario instanceof NormalDTO) {
-                    tipo = "normal";
-                } else if (usuario instanceof AdministradorDTO) {
-                    tipo = "administrador";
-                }
-                UsuarioBean bean = new UsuarioBean(usuario.getNombreUsuario(), usuario.getCorreo(), usuario.getCiudad(), usuario.getAvatar(), tipo);
-                HttpSession session = request.getSession();
-                session.setAttribute("usuario", bean);
-                response.sendRedirect(request.getContextPath() + "/inicio.jsp");
-            } else {
-                request.setAttribute("error", "Correo o contraseña incorrectos");
-                this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-            }
-        } catch (FachadaException e) {
-            System.out.println("Error al iniciar sesión");
-            request.setAttribute("error", "Ocurrió un error durante el inicio de sesión");
-            this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

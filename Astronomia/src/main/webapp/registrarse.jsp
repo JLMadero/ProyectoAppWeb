@@ -19,7 +19,7 @@
         
         <div class="right-side">
             <h1>REGISTRARSE:</h1>
-            <form action="index.jsp">
+            <form action="RegistrarUsuario" enctype="multipart/form-data" method="POST">
                 
                 <div class="column">
                     <div class="fila">
@@ -38,6 +38,10 @@
                 </div>
                 
                 <div class="column">
+                    <div class="fila">
+                        <label class="correo" for="correo">Usuario:</label>
+                        <input type="text" name="usuario" required>  
+                    </div>
                     <div class="fila">
                         <label class="correo" for="correo">Correo:</label>
                         <input type="email" name="correo" required>  
@@ -72,7 +76,7 @@
                     </div>
                     <div class="fila">
                         <label class="avatar" for="avatar">Avatar:</label>
-                        <input type="file" name="avatar" required>  
+                        <input type="file" name="avatar" accept="image/*" required>  
                     </div>
                     <div class="fila">
                         <label class="fechaN" for="fechaN">Fecha Nacimiento:</label>
