@@ -74,7 +74,7 @@ public class Usuario implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     protected Municipio municipio;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Post> posts;
 
     /**

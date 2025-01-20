@@ -45,7 +45,7 @@
                 <div class="post">
                     <c:forEach items="${requestScope.listaPosts}" var="post">
                         <p class="tituloPost">${post.getTitulo()}</p>
-                        <img class="fotoPost" src="${pageContext.request.contextPath}/resources/imgs/${post.getImagen()}" alt="alt"/>
+                        <img class="fotoPost" src="./resources/${post.getImagen()}" alt="alt"/>
                         <div>
                             <button class="editar" onclick="location.href = 'EditarPost.jsp?id=${post.getId()}'">Editar</button>
                             <button class="eliminar" onclick="location.href = 'EliminarPost.jsp?id=${post.getId()}'">Eliminar</button>

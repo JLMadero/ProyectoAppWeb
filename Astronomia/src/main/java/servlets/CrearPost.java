@@ -6,7 +6,9 @@ package servlets;
 
 import Exception.FachadaException;
 import beans.UsuarioBean;
+import com.mycompany.dto.AncladoDTO;
 import com.mycompany.dto.ComunDTO;
+import com.mycompany.dto.PostDTO;
 import com.mycompany.dto.UsuarioDTO;
 import fachada.Fachada;
 import fachada.IFachada;
@@ -14,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -123,7 +126,14 @@ public class CrearPost extends HttpServlet {
 
         try {
             ComunDTO postNuevo = new ComunDTO(new GregorianCalendar(), titulo, "", cuerpo, tipoPost, usuario, rutaRelativa);
+            if (request.getParameter("isAnclado").equalsIgnoreCase("anclado")) {
+                accesoDatos.publicarPost(postNuevo);
+                List<PostDTO> posts = accesoDatos.obtenerPostsPorUsuario(usuario.getCorreo());
+                accesoDatos.anclarPost(posts.getLast().getId(), usuario.getCorreo());
+            }else{
             accesoDatos.publicarPost(postNuevo);
+            }
+            
         } catch (FachadaException ex) {
             System.out.println("Error al crear la publicacion");
         }

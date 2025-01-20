@@ -36,6 +36,10 @@ public class AncladoDTO extends PostDTO{
                 comentarios,
                 imagen);
     }
+
+    public AncladoDTO(Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, String categoria, UsuarioDTO usuario, String imagen) {
+        super(fechaHoraCreacion, titulo, subtitulo, contenido, categoria, usuario, imagen);
+    }
     
     
     

@@ -130,6 +130,43 @@ public class Fachada implements IFachada {
             throw new FachadaException("No se pudo publicar el post.");
         }
     }
+    @Override
+    public void publicarPostAnclado(AncladoDTO post) throws FachadaException {
+        CategoriaPost categoria;
+        switch (post.getCategoria().toUpperCase()) {
+            case "NOTICIAS":
+                categoria = CategoriaPost.NOTICIAS;
+                break;
+            case "FENOMENO":
+                categoria = CategoriaPost.FENOMENOS;
+                break;
+            case "PLANETAS":
+                categoria = CategoriaPost.PLANETAS;
+                break;
+            case "DESCUBRIMIENTOS":
+                categoria = CategoriaPost.DESCUBRIMIENTO;
+                break;
+            default:
+                categoria = CategoriaPost.INICIO;
+        }
+
+        try {
+            UsuarioDTO usuarioDTO = post.getUsuario();
+            Usuario usuario = usuariosDAO.buscarUsuario(usuarioDTO.getCorreo());
+
+            Anclado nuevoPost = new Anclado(
+                    post.getFechaHoraCreacion(),
+                    post.getTitulo(),
+                    post.getSubtitulo(),
+                    post.getContenido(),
+                    categoria,
+                    usuario,
+                    post.getImagen());
+            postsDAO.publicarPost(nuevoPost);
+        } catch (PersistenciaException ex) {
+            throw new FachadaException("No se pudo publicar el post.");
+        }
+    }
 
     @Override
     public void eliminarPost(Long id, UsuarioDTO usuario) throws FachadaException {

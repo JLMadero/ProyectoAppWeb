@@ -86,14 +86,7 @@ public class Comun extends Post implements Serializable {
         this.usuario = usuario;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Comun{");
-        sb.append("comentarios=").append(comentarios);
-        sb.append(", usuario=").append(usuario);
-        sb.append('}');
-        return sb.toString();
-    }
+
+   
 
 }

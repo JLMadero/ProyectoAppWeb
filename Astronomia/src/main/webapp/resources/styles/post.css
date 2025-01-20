@@ -33,7 +33,7 @@ label{
 .imgTipo{
     display: flex; /* Organiza los elementos en filas o columnas */
     flex-direction: row; /* Coloca las columnas lado a lado */
-    gap: 15rem;
+    gap: 1rem;
     margin-bottom: 2rem;
 }
 .imgTipo div{

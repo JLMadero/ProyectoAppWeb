@@ -8,6 +8,7 @@ import Conexion.IConexion;
 import Exception.PersistenciaException;
 import com.mycompany.modelo.Anclado;
 import com.mycompany.modelo.CategoriaPost;
+import com.mycompany.modelo.Comentario;
 import com.mycompany.modelo.Comun;
 import com.mycompany.modelo.Post;
 import com.mycompany.modelo.Usuario;
@@ -391,6 +392,9 @@ public class PostDAO implements IPostDAO {
             postComun = em.merge(postComun);
 
             // Mandamos a eliminar el post de la tabla de comunes.
+            for (Comentario comentario : postComun.getComentarios()) {
+            em.remove(em.contains(comentario) ? comentario : em.merge(comentario));
+            }
             em.remove(postComun);
 
             // Mandamos a guardar el post en la tabla de anclados.

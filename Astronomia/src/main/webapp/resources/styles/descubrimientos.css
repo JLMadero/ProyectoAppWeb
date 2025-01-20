@@ -109,4 +109,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 20px;
     margin-bottom: 1rem;
 }
+.comentariosTodos textArea{
+    width: 700px; /* Ancho equivalente a "cols" */
+    height: 40px; /* Alto equivalente a "rows" */
+    font-size: 10px; /* Tamaño de texto */
+    line-height: 10px; /* Altura de línea que afecta a cada fila */
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+.anclado1{
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+     border: 2px solid #ccc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+}
+.anclado1:hover{
+    border-color: #e74c3c;  
+    box-shadow: 0 0 15px rgba(231, 76, 60, 0.7);  
+}
+.anclado1 img{
+    width: 1000px; 
+     height: 150px; 
+}
 

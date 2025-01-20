@@ -3,7 +3,7 @@
     Created on : 17 ene 2025, 22:48:29
     Author     : jl4ma
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,10 +50,18 @@
                                     <option value="PLANETAS">Planetas</option>
                                     <option value="DESCUBRIMIENTOS">Descubrimientos</option>
                                 </select>
+                                
                             </div>
-
+                            <div>
+                                <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
+                                    <label for="anclado">Anclado</label>
+                                <input type="checkbox" name="isAnclado" value="anclado">
+                            </c:if>
+                            </div>
+                            
                         </div>
                         <div class="botones">
+                            
                             <input type="submit" value="Postear">
                             <input type="reset" value="Limpiar">
                         </div>

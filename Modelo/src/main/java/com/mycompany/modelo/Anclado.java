@@ -46,6 +46,11 @@ public class Anclado extends Post implements Serializable {
         this.administrador = administrador;
     }
 
+    public Anclado(Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, CategoriaPost categoria, Usuario usuario, String imagen) {
+        super(fechaHoraCreacion, titulo, subtitulo, contenido, categoria, usuario, imagen);
+    }
+    
+
     public Administrador getAdministrador() {
         return administrador;
     }

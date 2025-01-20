@@ -5,6 +5,7 @@
 package fachada;
 
 import Exception.FachadaException;
+import com.mycompany.dto.AncladoDTO;
 import com.mycompany.dto.ComentarioDTO;
 import com.mycompany.dto.ComunDTO;
 import com.mycompany.dto.PostDTO;
@@ -21,6 +22,8 @@ public interface IFachada {
     public void registrarUsuario(UsuarioDTO usuario) throws FachadaException;
 
     public void publicarPost(ComunDTO post) throws FachadaException;
+    
+    public void publicarPostAnclado(AncladoDTO post) throws FachadaException;
 
     public void eliminarPost(Long id, UsuarioDTO usuario) throws FachadaException;
 

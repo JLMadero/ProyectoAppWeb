@@ -42,7 +42,7 @@ public class Comentario implements Serializable {
     private String contenido;
 
     @OneToMany(mappedBy = "respuesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comentario> respuestas;
+private List<Comentario> respuestas;
 
     @ManyToOne
     @JoinColumn(name = "id_respuesta")
@@ -129,20 +129,13 @@ public class Comentario implements Serializable {
         this.usuario = usuario;
     }
 
-    
-
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Comentario{");
-        sb.append("fechaHora=").append(fechaHora);
-        sb.append(", contenido=").append(contenido);
-        sb.append(", comentarios=").append(respuestas);
-        sb.append(", respuesta=").append(respuesta);
-        sb.append(", post=").append(post);
-        sb.append(", usuario=").append(usuario);
-        sb.append('}');
-        return sb.toString();
+        return "Comentario{" + "id=" + id + ", fechaHora=" + fechaHora + ", contenido=" + contenido + ", respuestas=" + respuestas + ", respuesta=" + respuesta + ", post=" + post + ", usuario=" + usuario + '}';
     }
+
+    
+
+    
 
 }
