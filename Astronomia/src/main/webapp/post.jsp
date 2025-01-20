@@ -39,7 +39,7 @@
                         <div class="imgTipo">
                             <div>
                                 <label for="imagen">Imagen</label>
-                                <input type="file" name="imagenPost" required>
+                                <input type="file" name="imagenPost" accept="image/*" required>
                             </div>
                             <div>
                                 <label for="tipoPost">Tipo</label>  

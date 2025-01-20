@@ -133,4 +133,15 @@
             30
         </session-timeout>
     </session-config>
+     <!-- Página de error 404 -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errores/PaginaNoEncontrada.jsp</location>
+    </error-page>
+
+    <!-- Página de error 500 -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errores/ErrorServidor.jsp</location>
+    </error-page>
 </web-app>

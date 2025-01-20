@@ -29,14 +29,12 @@ import javax.servlet.http.Part;
  * @author jl4ma
  */
 @MultipartConfig(
-    fileSizeThreshold = 1024 * 1024 * 2, // 2MB
-    maxFileSize = 1024 * 1024 * 10, // 10MB
-    maxRequestSize = 1024 * 1024 * 50 // 50MB
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10, // 10MB
+        maxRequestSize = 1024 * 1024 * 50 // 50MB
 )
 public class RegistrarUsuario extends HttpServlet {
 
-    
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,7 +48,7 @@ public class RegistrarUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
         }
     }
 
@@ -84,7 +82,7 @@ public class RegistrarUsuario extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String apellidoM = request.getParameter("materno");
         String apellidoP = request.getParameter("paterno");
-        
+
         String nombreUsuario = request.getParameter("usuario");
         String correo = request.getParameter("correo");
         String contrasenia = request.getParameter("contra");
@@ -92,63 +90,62 @@ public class RegistrarUsuario extends HttpServlet {
         String telefono = request.getParameter("telefono");
         String ciudad = request.getParameter("ciudad");
         String genero = request.getParameter("genero");
-        if(contrasenia.equalsIgnoreCase(Confirmarcontrasenia)){
-            
-        //PROCESAMIENTO DE LA IMAGEN
-        // Se crea la ruta del directorio donde se almacenarán las imagenes
-        String rutaDirectorio = getServletContext().getRealPath("/avatares");
-        File directorioAvatares = new File(rutaDirectorio);
+        if (contrasenia.equalsIgnoreCase(Confirmarcontrasenia)) {
 
-        // Se crea el directorio si no existe
-        if (!directorioAvatares.exists()) {
-            directorioAvatares.mkdir();
+            //PROCESAMIENTO DE LA IMAGEN
+// Se crea la ruta del directorio donde se almacenarán las imagenes
+            String rutaDirectorio = getServletContext().getRealPath("/resources/imgs/avatares");
+            File directorioAvatares = new File(rutaDirectorio);
+
+// Se crea el directorio si no existe
+            if (!directorioAvatares.exists()) {
+                directorioAvatares.mkdir();
+            }
+
+// Se obtiene el archivo
+            Part avatar = request.getPart("avatar");
+
+// Se obtiene la referencia del archivo (nombre del archivo)
+            String referencia = avatar.getSubmittedFileName();
+
+// Ruta completa donde se almacenará el archivo en el servidor
+            String rutaAvatar = rutaDirectorio + File.separator + referencia;
+
+// Se almacena el archivo en el directorio
+            avatar.write(rutaAvatar);
+
+// Guardar la ruta relativa que será accesible por la aplicación web
+            String rutaRelativa = "resources/imgs/avatares/" + referencia;
+            request.getSession().setAttribute("avatar", rutaRelativa);
+//FIN PROCESAMIENTO IMAGEN
+            String fechaNacimientoStr = request.getParameter("fechaN");
+
+            Calendar fechaNacimiento = Calendar.getInstance();
+            String[] dateParts = fechaNacimientoStr.split("-");
+            fechaNacimiento.set(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]) - 1, Integer.parseInt(dateParts[2]));
+            EstadoDTO estado = new EstadoDTO(request.getParameter("estado"));
+            MunicipioDTO municipio = new MunicipioDTO(request.getParameter("municipio"), estado);
+
+            UsuarioDTO usuario = new NormalDTO(nombre, apellidoP, apellidoM, correo, contrasenia, telefono, nombreUsuario, rutaRelativa, ciudad, fechaNacimiento, genero, municipio);
+            System.out.println("HOLA DESDE EL SERVLET");
+            try {
+                String tipo = "normal";
+                System.out.println("REGISTRO DE USUARIO SERVLET");
+                accesoDatos.registrarUsuario(usuario);
+                UsuarioBean bean = new UsuarioBean(nombreUsuario, correo, ciudad, rutaRelativa, tipo);
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario", bean);
+                response.sendRedirect("index.jsp");
+            } catch (FachadaException e) {
+                System.out.println("EXCEPCION");
+                this.getServletContext()
+                        .getRequestDispatcher("/registrarse.jsp")
+                        .forward(request, response);
+            }
+
+        } else {
+            response.sendRedirect("registrarse.jsp");
         }
-
-        // Se obtiene el archivo
-        Part avatar = request.getPart("avatar");
-
-        // Se obtiene la referencia del archivo (nombre del archivo)
-        String referencia = avatar.getSubmittedFileName();
-        
-        // Ruta completa donde se almacenará el archivo en el servidor
-        String rutaAvatar = rutaDirectorio + File.separator + referencia;
-        
-        // Se almacena el archivo en el directorio
-        avatar.write(rutaAvatar);
-        
-        // Guardar la ruta relativa que será accesible por la aplicación web
-        String rutaRelativa = "avatares/" + referencia;
-        request.getSession().setAttribute("avatar", rutaRelativa);
-        //FIN PROCESAMIENTO IMAGEN
-
-        String fechaNacimientoStr = request.getParameter("fechaN");
-
-        Calendar fechaNacimiento = Calendar.getInstance();
-        String[] dateParts = fechaNacimientoStr.split("-");
-        fechaNacimiento.set(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]) - 1, Integer.parseInt(dateParts[2]));
-        EstadoDTO estado = new EstadoDTO(request.getParameter("estado"));
-        MunicipioDTO municipio = new MunicipioDTO(request.getParameter("municipio"), estado);
-
-        UsuarioDTO usuario = new NormalDTO(nombre, apellidoP, apellidoM, correo, contrasenia, telefono, nombreUsuario, rutaRelativa, ciudad, fechaNacimiento, genero, municipio);
-        System.out.println("HOLA DESDE EL SERVLET");
-        try {
-            String tipo = "normal";
-            System.out.println("REGISTRO DE USUARIO SERVLET");
-            accesoDatos.registrarUsuario(usuario);
-            UsuarioBean bean = new UsuarioBean(nombreUsuario, correo, ciudad, rutaRelativa, tipo);
-            HttpSession session = request.getSession();
-            session.setAttribute("usuario", bean);
-            response.sendRedirect("index.jsp");
-        } catch (FachadaException e) {
-            System.out.println("EXCEPCION");
-            this.getServletContext()
-                    .getRequestDispatcher("/registrarse.jsp")
-                    .forward(request, response);
-        }
-        
-        }else{
-                response.sendRedirect("registrarse.jsp");
-                }
     }
 
     /**

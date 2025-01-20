@@ -4,8 +4,24 @@
  */
 package servlets;
 
+import Exception.FachadaException;
+import beans.ComentarioBean;
+import beans.PostBean;
+import beans.UsuarioBean;
+import com.mycompany.dto.AncladoDTO;
+import com.mycompany.dto.ComentarioDTO;
+import com.mycompany.dto.ComunDTO;
+import com.mycompany.dto.PostDTO;
+import com.mycompany.dto.UsuarioDTO;
+import com.mycompany.modelo.CategoriaPost;
+import fachada.Fachada;
+import fachada.IFachada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,15 +47,7 @@ public class Noticias extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Noticias</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Noticias at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 
@@ -55,9 +63,84 @@ public class Noticias extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        System.out.println("HOLA DESDE SERVLET NOTICIAS");
+       IFachada accesoDatos = new Fachada();
+        try {
+            List<PostDTO> posts = accesoDatos.obtenerPostsPorCategoria(CategoriaPost.NOTICIAS);
+            
+            List<PostBean> postBeans = posts.stream()
+                    .map(this::toBean)
+                    .collect(Collectors.toList());
+
+            request.setAttribute("posts", postBeans);
+            System.out.println("SERVLET POSTS ");
+            request.getRequestDispatcher("noticias.jsp").forward(request, response);
+        } catch (FachadaException ex) {
+            Logger.getLogger(Noticias.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al cargar los posts.");
+        }
+    }
+    
+    private PostBean toBean(PostDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        // Convierte comentarios
+        List<ComentarioBean> comentarios = dto.getComentarios() != null
+                ? dto.getComentarios().stream().map(this::toBean).collect(Collectors.toList())
+                : null;
+
+        String tipo = "";
+        if (dto instanceof ComunDTO) {
+            tipo = "comun";
+        } else if (dto instanceof AncladoDTO) {
+            tipo = "anclado";
+        }
+        return new PostBean(
+                dto.getId(),
+                toBean(dto.getUsuario()),
+                dto.getFechaHoraCreacion(),
+                dto.getTitulo(),
+                dto.getSubtitulo(),
+                dto.getContenido(),
+                dto.getCategoria(),
+                dto.getImagen(),
+                comentarios,tipo
+        );
     }
 
+    /**
+     * Convierte un ComentarioDTO a un ComentarioBean.
+     */
+    private ComentarioBean toBean(ComentarioDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        return new ComentarioBean(
+                dto.getId(),
+                dto.getUsuario().getNombreUsuario(),
+                dto.getFechaHora().getTime().toString(),
+                dto.getContenido(),
+                null //Aun no se pueden poner respustas saluditos
+        );
+    }
+
+    /**
+     * Convierte un UsuarioDTO a un UsuarioBean.
+     */
+    private UsuarioBean toBean(UsuarioDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        return new UsuarioBean(
+                dto.getNombreUsuario(),
+                dto.getCorreo(),
+                dto.getCiudad(),
+                dto.getAvatar(),
+                dto.getGenero()
+        );
+    }
     /**
      * Handles the HTTP <code>POST</code> method.
      *

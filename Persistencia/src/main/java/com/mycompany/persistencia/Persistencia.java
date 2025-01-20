@@ -23,6 +23,7 @@ import com.mycompany.modelo.Estado;
 import com.mycompany.modelo.Municipio;
 import daos.IUsuarioDAO;
 import daos.UsuarioDAO;
+import encriptador.AESEncriptador;
 import fachada.Fachada;
 import fachada.IFachada;
 import java.util.ArrayList;
@@ -76,7 +77,7 @@ public class Persistencia {
             //anclar
 //              IConexion conexion = new Conexion();
 //                 AbstractDAOFactory fabrica = new DAOFactory(conexion);
-//                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("maderito@", "a", "b", "c", "Made", "123", "1", "foto", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
+//                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("madero26@gmail.com", "a", "b", "c", "Maderito", AESEncriptador.encriptar("123") , "1", "foto", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
                  
 //            fachada.anclarPost(1L, "maderito@");
 //            fachada.desanclarPost(4l);
@@ -91,13 +92,13 @@ public class Persistencia {
 //               }
 
 //                obtener post por usuario
-                List<PostDTO> post = new ArrayList<>();
-                post = fachada.obtenerPostsPorUsuario("pipi@123");
-                for(PostDTO p: post){
-                    if(p!=null){
-                        System.out.println(p);
-                    }
-                }
+//                List<PostDTO> post = new ArrayList<>();
+//                post = fachada.obtenerPostsPorUsuario("pipi@123");
+//                for(PostDTO p: post){
+//                    if(p!=null){
+//                        System.out.println(p);
+//                    }
+//                }
                 
         
     }

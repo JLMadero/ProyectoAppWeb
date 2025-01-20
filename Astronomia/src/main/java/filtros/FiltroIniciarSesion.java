@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
 public class FiltroIniciarSesion implements Filter {
     
     private static final boolean debug = true;
-    private static final String[] RUTAS_PUBLICAS = {"index.jsp","registrarse.jsp","resources/styles/registrarse.css","resources/styles/login.css","resources/imgs/fondo.jpg", "IniciarSesion","CerrarSesion", "RegistrarUsuario","resources/imgs/galaxia.webp", "CerrarSesion", "RegistrarUsuario"};
+    private static final String[] RUTAS_PUBLICAS = {"index.jsp","registrarse.jsp","resources/styles/registrarse.css","resources/styles/login.css","resources/imgs/fondo.jpg","resources/imgs/galaxia.webp", "IniciarSesion","CerrarSesion", "RegistrarUsuario", "CerrarSesion", "RegistrarUsuario"};
 
 
     // The filter configuration object we are associated with.  If
@@ -103,22 +103,27 @@ public class FiltroIniciarSesion implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("FiltroIniciarSesion:doFilter()");
-        }
+         log("FiltroIniciarSesion:doFilter()");
+     }
 
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+     HttpServletRequest httpRequest = (HttpServletRequest) request;
+     HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        String ruta = this.getRutaSolicitada(httpRequest);
-        boolean urlPrivada = this.esURLPrivada(ruta);
-        boolean logueado = this.estaLogueado(httpRequest);
+     String ruta = this.getRutaSolicitada(httpRequest);
+     boolean urlPrivada = this.esURLPrivada(ruta);
+     boolean logueado = this.estaLogueado(httpRequest);
 
-        if (!logueado && urlPrivada && !ruta.equals("/index.jsp")) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
-        } else {
-            chain.doFilter(request, response);
-        }
-    }
+     try {
+         if (!logueado && urlPrivada && !ruta.equals("/index.jsp")) {
+             httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
+         } else {
+             chain.doFilter(request, response);
+         }
+     } catch (Exception e) {
+         sendProcessingError(e, response);  // Usa tu método para manejar errores
+     }
+ }
+    
 
     /**
      * Return the filter configuration object for this filter.
@@ -170,31 +175,29 @@ public class FiltroIniciarSesion implements Filter {
     
     private void sendProcessingError(Throwable t, ServletResponse response) {
         String stackTrace = getStackTrace(t);        
-        
-        if (stackTrace != null && !stackTrace.equals("")) {
-            try {
-                response.setContentType("text/html");
-                PrintStream ps = new PrintStream(response.getOutputStream());
-                PrintWriter pw = new PrintWriter(ps);                
-                pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); //NOI18N
-
-                // PENDING! Localize this for next official release
-                pw.print("<h1>The resource did not process correctly</h1>\n<pre>\n");                
-                pw.print(stackTrace);                
-                pw.print("</pre></body>\n</html>"); //NOI18N
-                pw.close();
-                ps.close();
-                response.getOutputStream().close();
-            } catch (Exception ex) {
-            }
-        } else {
-            try {
-                PrintStream ps = new PrintStream(response.getOutputStream());
-                t.printStackTrace(ps);
-                ps.close();
-                response.getOutputStream().close();
-            } catch (Exception ex) {
-            }
+     
+     if (stackTrace != null && !stackTrace.equals("")) {
+         try {
+             response.setContentType("text/html");
+             PrintStream ps = new PrintStream(response.getOutputStream());
+             PrintWriter pw = new PrintWriter(ps);                
+             pw.print("<html>\n<head>\n<title>Error</title>\n</head>\n<body>\n"); 
+             pw.print("<h1>Ha ocurrido un error</h1>\n<pre>\n");                
+             pw.print(stackTrace);                
+             pw.print("</pre></body>\n</html>");
+             pw.close();
+             ps.close();
+             response.getOutputStream().close();
+         } catch (Exception ex) {
+         }
+     } else {
+         try {
+             PrintStream ps = new PrintStream(response.getOutputStream());
+             t.printStackTrace(ps);
+             ps.close();
+             response.getOutputStream().close();
+         } catch (Exception ex) {
+         }
         }
     }
     

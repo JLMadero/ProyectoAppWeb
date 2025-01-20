@@ -14,7 +14,7 @@ body {
 }
 .left-side {
     flex: 35%;
-    background: url('./resources/imgs/galaxia.webp') no-repeat center center/cover; 
+    background: url('../imgs/galaxia.webp') no-repeat center center/cover; 
 }
 .right-side {
     flex: 65%;

@@ -45,7 +45,7 @@ public class CrearPost extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
         }
     }
 
@@ -88,52 +88,56 @@ public class CrearPost extends HttpServlet {
         }
 
         String rutaRelativa = "";
-        //PROCESAMIENTO DE LA IMAGEN
-        if (!request.getPart("imagenPost").getSubmittedFileName().isBlank()) {
-        // Se crea la ruta del directorio donde se almacenarán las imagenes
-        String rutaDirectorio = getServletContext().getRealPath("/imagenesPost");
-        File directorioImagenesPost = new File(rutaDirectorio);
+// PROCESAMIENTO DE LA IMAGEN
+        try {
+            if (!request.getPart("imagenPost").getSubmittedFileName().isBlank()) {
+                // Ruta del directorio donde se almacenarán las imágenes
+                String rutaDirectorio = getServletContext().getRealPath("/resources/imgs/imagenesPost");
+                File directorioImagenesPost = new File(rutaDirectorio);
 
-        // Se crea el directorio si no existe
-        if (!directorioImagenesPost.exists()) {
-            directorioImagenesPost.mkdir();
+                // Crear el directorio si no existe
+                if (!directorioImagenesPost.exists()) {
+                    directorioImagenesPost.mkdir();
+                }
+
+                // Obtener el archivo
+                Part imagen = request.getPart("imagenPost");
+
+                // Referencia del archivo (nombre del archivo)
+                String referencia = imagen.getSubmittedFileName();
+
+                // Ruta completa donde se almacenará el archivo en el servidor
+                String rutaImagen = rutaDirectorio + File.separator + referencia;
+
+                // Almacenar el archivo en el directorio
+                imagen.write(rutaImagen);
+
+                // Guardar la ruta relativa accesible por la aplicación web
+                rutaRelativa = "imgs/imagenesPost/" + referencia;
+                request.getSession().setAttribute("imagen", rutaRelativa);
+            }
+        } catch (IOException | ServletException e) {
+            e.printStackTrace();
+        }
+// FIN PROCESAMIENTO IMAGEN
+
+        try {
+            ComunDTO postNuevo = new ComunDTO(new GregorianCalendar(), titulo, "", cuerpo, tipoPost, usuario, rutaRelativa);
+            accesoDatos.publicarPost(postNuevo);
+        } catch (FachadaException ex) {
+            System.out.println("Error al crear la publicacion");
         }
 
-        // Se obtiene el archivo
-        Part imagen = request.getPart("imagenPost");
+        HttpSession session = request.getSession();
+        String returnTo = (String) session.getAttribute("returnTo");
 
-        // Se obtiene la referencia del archivo (nombre del archivo)
-        String referencia = imagen.getSubmittedFileName();
-        
-        // Ruta completa donde se almacenará el archivo en el servidor
-        String rutaImagen = rutaDirectorio + File.separator + referencia;
-        
-        // Se almacena el archivo en el directorio
-        imagen.write(rutaImagen);
-        
-        // Guardar la ruta relativa que será accesible por la aplicación web
-        rutaRelativa = "imagenesPost/" + referencia;
-        request.getSession().setAttribute("imagen", rutaRelativa);
+        if (returnTo != null) {
+            session.removeAttribute("returnTo");
+            response.sendRedirect(returnTo);
+        } else {
+            response.sendRedirect("inicio.jsp");
         }
-        //FIN PROCESAMIENTO IMAGEN
 
-            try {
-                ComunDTO postNuevo = new ComunDTO(new GregorianCalendar(), titulo, "", cuerpo, tipoPost, usuario, rutaRelativa);
-                accesoDatos.publicarPost(postNuevo);
-            } catch (FachadaException ex) {
-                System.out.println("Error al crear la publicacion");
-            }
-
-            HttpSession session = request.getSession();
-            String returnTo = (String) session.getAttribute("returnTo");
-
-            if (returnTo != null) {
-                session.removeAttribute("returnTo");
-                response.sendRedirect(returnTo);
-            } else {
-                response.sendRedirect("inicio.jsp");
-            }
-        
     }
 
     /**
