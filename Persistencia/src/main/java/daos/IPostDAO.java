@@ -5,6 +5,7 @@
 package daos;
 
 import Exception.PersistenciaException;
+import com.mycompany.dto.PostDTO;
 import com.mycompany.modelo.Anclado;
 import com.mycompany.modelo.CategoriaPost;
 import com.mycompany.modelo.Comun;
@@ -28,4 +29,5 @@ public interface IPostDAO {
     public Post buscarPostPorAtributos(Post post) throws PersistenciaException;
     public void anclarPost(Comun postComun, Anclado postAnclado) throws PersistenciaException;
     public void desanclarPost(Comun comun, Anclado anclado) throws PersistenciaException;
+    public Long obtenerUltimoPostPorUsuario() throws PersistenciaException;
 }

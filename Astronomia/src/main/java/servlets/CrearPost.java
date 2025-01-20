@@ -123,16 +123,16 @@ public class CrearPost extends HttpServlet {
             e.printStackTrace();
         }
 // FIN PROCESAMIENTO IMAGEN
-
         try {
             ComunDTO postNuevo = new ComunDTO(new GregorianCalendar(), titulo, "", cuerpo, tipoPost, usuario, rutaRelativa);
-            if (request.getParameter("isAnclado").equalsIgnoreCase("anclado")) {
-                accesoDatos.publicarPost(postNuevo);
-                List<PostDTO> posts = accesoDatos.obtenerPostsPorUsuario(usuario.getCorreo());
-                accesoDatos.anclarPost(posts.getLast().getId(), usuario.getCorreo());
+            String ancla = request.getParameter("isAnclado");
+            if (ancla == null) {
+               accesoDatos.publicarPost(postNuevo); 
             }else{
-            accesoDatos.publicarPost(postNuevo);
+                 accesoDatos.publicarPost(postNuevo);
+                accesoDatos.anclarPost(accesoDatos.obtenerUltimoPost(), usuario.getCorreo());
             }
+            
             
         } catch (FachadaException ex) {
             System.out.println("Error al crear la publicacion");

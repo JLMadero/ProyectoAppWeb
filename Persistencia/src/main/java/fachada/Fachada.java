@@ -647,4 +647,14 @@ public class Fachada implements IFachada {
         }   
     }
 
+    @Override
+    public Long obtenerUltimoPost() throws FachadaException {
+        try {
+            return postsDAO.obtenerUltimoPostPorUsuario();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 }

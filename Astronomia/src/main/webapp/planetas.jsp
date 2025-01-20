@@ -35,7 +35,7 @@
     <c:forEach items="${requestScope.posts}" var="post">
         <c:if test="${post.tipo == 'anclado'}">
             <div class="anclado1">
-                <img src="${pageContext.request.contextPath}/resources/imgs/${post.imagen != null ? post.imagen : 'default.jpg'}" alt="galaxy" />
+                <img src="./resources/imgs/${post.imagen != null ? post.imagen : 'default.jpg'}" alt="galaxy" />
                 <p class="userFecha">@${post.usuario.nombreUsuario} ${post.fechaHoraCreacion.time}</p>
                 <p class="tituloPost">${post.titulo}</p>
                 <p class="comentarios">Comentarios: (${fn:length(post.comentarios)})</p>

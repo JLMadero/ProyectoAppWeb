@@ -5,7 +5,9 @@
 package daos;
 
 import Conexion.IConexion;
+import Exception.FachadaException;
 import Exception.PersistenciaException;
+import com.mycompany.dto.PostDTO;
 import com.mycompany.modelo.Anclado;
 import com.mycompany.modelo.CategoriaPost;
 import com.mycompany.modelo.Comentario;
@@ -449,6 +451,37 @@ public class PostDAO implements IPostDAO {
             throw new PersistenciaException("No se pudo eliminar el post.");
         }
     }
+    
 
+    @Override
+    public Long obtenerUltimoPostPorUsuario() throws PersistenciaException {
+EntityManager em = conexion.crearConexion();
+
+    try {
+        // Construimos un CriteriaBuilder.
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        // Creamos un CriteriaQuery para indicar el resultado de la consulta.
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        // Creamos una instancia del tipo Root para indicar de qué entidad
+        // se hará la consulta.
+        Root<Post> root = cq.from(Post.class);
+
+        // Con esta línea especificamos que la consulta seleccionará
+        // el ID del último post, ordenado por fecha o ID descendente.
+        cq.select(root.get("id")).orderBy(cb.desc(root.get("id")));
+
+        // Obtenemos el primer resultado de la consulta.
+        Long ultimoPostId = em.createQuery(cq).setMaxResults(1).getSingleResult();
+
+        // Retornamos el ID del último post.
+        return ultimoPostId;
+    } catch (PersistenceException pe) {
+        throw new PersistenciaException("No se pudo obtener el ID del último post.");
+    } finally {
+        // Cerramos el entity manager.
+        em.close();
+    }    
+    }
 }
+
 

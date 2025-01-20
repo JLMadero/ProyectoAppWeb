@@ -61,65 +61,65 @@ public class Persistencia {
 //        System.out.println(fachada.obtenerPostID(2L));
 //        
 //        //comentar post
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(1L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(1L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(1L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(1L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(2L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(2L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(2L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(2L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(3L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(3L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(3L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(3L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(4L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(4L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(4L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(4L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(5L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(5L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(5L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(5L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(6L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(6L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(6L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(6L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(7L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(7L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(7L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(7L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(8L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(8L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(8L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(8L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(9L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(9L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(9L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(9L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(10L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(10L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(10L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(10L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(11L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(11L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(11L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(11L));
-        
-        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(12L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(12L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(12L));
-        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(12L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(1L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(1L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(1L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(1L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(2L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(2L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(2L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(2L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(3L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(3L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(3L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(3L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(4L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(4L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(4L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(4L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(5L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(5L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(5L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(5L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(6L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(6L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(6L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(6L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(7L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(7L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(7L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(7L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(8L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(8L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(8L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(8L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(9L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(9L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(9L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(9L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(10L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(10L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(10L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(10L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(11L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(11L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(11L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(11L));
+//        
+//        fachada.comentarPost(new ComentarioDTO(fecha, "WOW!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(12L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("123@123.com", "maderon")), fachada.obtenerPostID(12L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "EXCELENTE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(12L));
+//        fachada.comentarPost(new ComentarioDTO(fecha, "INCREIBLE!!", new ComentarioDTO(), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerPostID(12L));
 
 //        System.out.println(fachada.obtenerComentarioID(1L));
 //        
@@ -161,6 +161,8 @@ public class Persistencia {
 //                        System.out.println(p);
 //                    }
 //                }
+                System.out.println(fachada.obtenerUltimoPost());
+                
                 
         
     }

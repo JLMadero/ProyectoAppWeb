@@ -42,6 +42,8 @@ public interface IFachada {
     public List<PostDTO> obtenerPostsPorUsuario(String correo) throws FachadaException;
 
     public PostDTO obtenerPostID(Long id) throws FachadaException;
+    
+    public Long obtenerUltimoPost() throws FachadaException;
 
     public ComentarioDTO obtenerComentarioID(Long id) throws FachadaException;
 
