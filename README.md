@@ -5,5 +5,9 @@ Diseño de la pagina
 Colaboradores:
 Jose Luis Madero López 00000244903
 
+video avance 03:
+https://drive.google.com/drive/folders/1cE0bu5l7r9ARBtMggf2Goug0_w_pqM1D?usp=sharing
+
+
 Tema:
 Astronomia
