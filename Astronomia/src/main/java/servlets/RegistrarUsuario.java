@@ -94,7 +94,7 @@ public class RegistrarUsuario extends HttpServlet {
 
             //PROCESAMIENTO DE LA IMAGEN
 // Se crea la ruta del directorio donde se almacenarán las imagenes
-            String rutaDirectorio = getServletContext().getRealPath("/resources/imgs/avatares");
+            String rutaDirectorio = getServletContext().getRealPath("./resources/imgs/avatares/");
             File directorioAvatares = new File(rutaDirectorio);
 
 // Se crea el directorio si no existe
