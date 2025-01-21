@@ -13,11 +13,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="resources/styles/general.css"/>
         <link rel="stylesheet" href="resources/styles/inicio.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
 
     </head>
     <body>
-            <%@include file="./fragmentos/encabezado.xhtml"%>
-        <div class="contenido">
+        <header> 
+        <%@include file="./fragmentos/encabezado.xhtml"%>
+        </header>
+        <main class="contenido">
             
             
         <div class="left-side">
@@ -32,8 +35,6 @@
             </div>
             
         </div>
-            
-            
-            </div> 
+            </main> 
     </body>
 </html>

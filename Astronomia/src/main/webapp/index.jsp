@@ -11,12 +11,17 @@
         <title>Astronomia Blog - Jose Madero</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="resources/styles/login.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
     </head>
     <body>
-        <h1>ASTRONOMIA</h1>
-        <p class="blog">BLOG</p>
+        <header>
+          <h1>ASTRONOMIA</h1>
+        <p class="blog">BLOG</p>  
+        </header>
         
         
+        <main>
+            <section>
         <form action="IniciarSesion" method="post">
                 <div class="form-gruop">
                     <label class="correo" for="correo">CORREO:</label>
@@ -31,7 +36,12 @@
                 </div>
                 
             </form>
+            </section>
+        </main>
+        <footer>
             <p class="link">¿No tienes cuenta?, registrate <a href="registrarse.jsp">aquí.</a></p>
+        </footer>
+            
         
     </body>
 </html>

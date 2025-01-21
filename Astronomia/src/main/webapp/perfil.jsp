@@ -20,16 +20,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="resources/styles/general.css"/>
         <link rel="stylesheet" href="resources/styles/perfil.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
     </head>
     <body>
-        <%@include file="./fragmentos/encabezado.xhtml"%>
+        <header>
+          <%@include file="./fragmentos/encabezado.xhtml"%>  
+        </header>
+        
 
-        <div class="contenido">
-            <div class="left-side">
+        <main class="contenido">
+            <section class="left-side">
                 <%@include file="./fragmentos/navegador.xhtml"%>
-            </div> 
+            </section> 
 
-            <div class="right-side">
+            <section class="right-side">
                 <div class="avatar">
                     <div>
                         <img src="${pageContext.request.contextPath}/${sessionScope.usuario.getAvatar()}" alt="avatar"/>
@@ -52,8 +56,12 @@
                         </div>
                     </c:forEach>
                 </div>
-                <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>
-            </div> 
-        </div>
+                
+            </section> 
+        </main>
+                
+                <footer>
+                  <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>  
+                </footer>
     </body>
 </html>

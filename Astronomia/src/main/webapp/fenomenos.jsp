@@ -14,22 +14,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="resources/styles/general.css"/>
         <link rel="stylesheet" href="resources/styles/fenomenos.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
 
     </head>
     <body>
-        <%@include file="./fragmentos/encabezado.xhtml"%>
-        <div class="contenido">
+        <header>
+            <%@include file="./fragmentos/encabezado.xhtml"%>  
+        </header>
+
+        <main class="contenido">
 
 
-            <div class="left-side">
+            <section class="left-side">
                 <%@include file="./fragmentos/navegador.xhtml"%>
-            </div>
+            </section>
 
 
 
 
 
-            <div class="right-side">
+            <section class="right-side">
                 <div class="descubrimientosContenido">
                     <!-- Bloque para posts anclados -->
                     <c:forEach items="${requestScope.posts}" var="post">
@@ -39,21 +43,21 @@
                                 <p class="userFecha">@${post.usuario.nombreUsuario} ${post.fechaHoraCreacion.time}</p>
                                 <p class="tituloPost">${post.titulo}</p>
                                 <p class="comentarios">Comentarios: (${fn:length(post.comentarios)})</p>
-</div>
-                                <!-- Vista de administrador -->
-                                <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
-                                    <div class="comentariosTodos">
-                                        <c:forEach items="${post.comentarios}" var="comentario">
-                                            <p class="coments">@${comentario.nombreUsuario}: ${comentario.contenido}</p>
-                                            <button class="eliminar" onclick="location.href = 'EliminarComentario.jsp?id=${comentario.id}'">Eliminar</button>
-                                        </c:forEach>
-                                    </div>
-                                    <div class="botones">
-                                        <button class="desanclar" onclick="location.href = 'DesanclarPost.jsp?id=${post.id}'">Desanclar</button>
-                                        <button class="eliminar" onclick="location.href = 'EliminarPost.jsp?id=${post.id}'">Eliminar</button>
-                                    </div>
-                                </c:if>
-                            
+                            </div>
+                            <!-- Vista de administrador -->
+                            <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
+                                <div class="comentariosTodos">
+                                    <c:forEach items="${post.comentarios}" var="comentario">
+                                        <p class="coments">@${comentario.nombreUsuario}: ${comentario.contenido}</p>
+                                        <button class="eliminar" onclick="location.href = 'EliminarComentario.jsp?id=${comentario.id}'">Eliminar</button>
+                                    </c:forEach>
+                                </div>
+                                <div class="botones">
+                                    <button class="desanclar" onclick="location.href = 'DesanclarPost.jsp?id=${post.id}'">Desanclar</button>
+                                    <button class="eliminar" onclick="location.href = 'EliminarPost.jsp?id=${post.id}'">Eliminar</button>
+                                </div>
+                            </c:if>
+
                         </c:if>
                     </c:forEach>
 
@@ -101,10 +105,13 @@
                 </div>
 
 
-                <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>
-            </div>
+
+            </section>
 
 
-        </div> 
+        </main> 
+        <footer>
+            <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>  
+        </footer>
     </body>
 </html>

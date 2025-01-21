@@ -12,8 +12,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="resources/styles/registrarse.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
     </head>
     <body>
+        <main>
         <div class="left-side"></div> 
     
         
@@ -33,7 +35,7 @@
                 <div class="fila">
                 <label class="apellidoM" for="apellidoM">Apellido Materno:</label>
                  <input type="text" name="materno" required>  
-                </div>
+               </div>
                     
                 </div>
                 
@@ -106,6 +108,8 @@
             <p>Si ya tienes una cuenta, inicia sesion <a href="index.jsp" target="target">aqui</a></p>
 
         </div> 
+        </main> 
+        
         
     </body>
 </html>

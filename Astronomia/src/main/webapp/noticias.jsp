@@ -14,22 +14,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="resources/styles/general.css"/>
         <link rel="stylesheet" href="resources/styles/noticias.css"/>
+        <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
 
     </head>
     <body>
-        <%@include file="./fragmentos/encabezado.xhtml"%>
-        <div class="contenido">
+        <header>
+          <%@include file="./fragmentos/encabezado.xhtml"%>  
+        </header>
+        
+        <main class="contenido">
 
 
-            <div class="left-side">
+            <section class="left-side">
                 <%@include file="./fragmentos/navegador.xhtml"%>
-            </div> 
+            </section> 
 
 
 
 
 
-            <div class="right-side">
+            <section class="right-side">
                 <div class="descubrimientosContenido">
                     <!-- Bloque para posts anclados -->
                     <c:forEach items="${requestScope.posts}" var="post">
@@ -128,10 +132,12 @@
                             </div>
                     --%>
                 </div>
-                <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>
-            </div>
-        </div>
-
+                
+            </section>
+        </main>
+                <footer>
+                 <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>   
+                </footer>
 
     </div> 
 </body>
