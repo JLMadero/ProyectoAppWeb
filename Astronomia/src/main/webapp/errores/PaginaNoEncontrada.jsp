@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Astronomia Blog - Jose Madero</title>
-        <link rel="stylesheet" href="../resources/styles/errores.css"/>
+        <link rel="stylesheet" href="./resources/styles/errores.css"/>
     </head>
     <body>
         <main>
@@ -18,7 +18,7 @@
             <h2>Página no encontrada</h2>
             <p>La página a la que desea acceder no existe o se encuentra en mantenimiento, verifique que haya escrito correctamente la ruta.</p>
             <div>
-                <a href="../index.jsp">Volver al inicio</a>
+                <a href="./inicio.jsp">Volver al inicio</a>
             </div>
         </main>
     </body>
