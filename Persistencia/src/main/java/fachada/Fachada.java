@@ -20,10 +20,8 @@ import com.mycompany.dto.NormalDTO;
 import com.mycompany.dto.PostDTO;
 import com.mycompany.dto.UsuarioDTO;
 import com.mycompany.modelo.Administrador;
-import com.mycompany.modelo.Anclado;
 import com.mycompany.modelo.CategoriaPost;
 import com.mycompany.modelo.Comentario;
-import com.mycompany.modelo.Comun;
 import com.mycompany.modelo.Estado;
 import com.mycompany.modelo.Municipio;
 import com.mycompany.modelo.Normal;
@@ -94,7 +92,7 @@ public class Fachada implements IFachada {
     }
 
     @Override
-    public void publicarPost(ComunDTO post) throws FachadaException {
+    public void publicarPost(PostDTO post) throws FachadaException {
         CategoriaPost categoria;
         switch (post.getCategoria().toUpperCase()) {
             case "NOTICIAS":
@@ -117,21 +115,15 @@ public class Fachada implements IFachada {
             UsuarioDTO usuarioDTO = post.getUsuario();
             Usuario usuario = usuariosDAO.buscarUsuario(usuarioDTO.getCorreo());
 
-            Comun nuevoPost = new Comun(
-                    post.getFechaHoraCreacion(),
-                    post.getTitulo(),
-                    post.getSubtitulo(),
-                    post.getContenido(),
-                    categoria,
-                    usuario,
-                    post.getImagen());
+            Post nuevoPost = new Post("Comun", post.getFechaHoraCreacion(), post.getTitulo(), post.getSubtitulo(), post.getContenido(), post.getImagen(), categoria, usuario);
+                   
             postsDAO.publicarPost(nuevoPost);
         } catch (PersistenciaException ex) {
             throw new FachadaException("No se pudo publicar el post.");
         }
     }
     @Override
-    public void publicarPostAnclado(AncladoDTO post) throws FachadaException {
+    public void publicarPostAnclado(PostDTO post) throws FachadaException {
         CategoriaPost categoria;
         switch (post.getCategoria().toUpperCase()) {
             case "NOTICIAS":
@@ -154,14 +146,7 @@ public class Fachada implements IFachada {
             UsuarioDTO usuarioDTO = post.getUsuario();
             Usuario usuario = usuariosDAO.buscarUsuario(usuarioDTO.getCorreo());
 
-            Anclado nuevoPost = new Anclado(
-                    post.getFechaHoraCreacion(),
-                    post.getTitulo(),
-                    post.getSubtitulo(),
-                    post.getContenido(),
-                    categoria,
-                    usuario,
-                    post.getImagen());
+            Post nuevoPost = new Post("Anclado", post.getFechaHoraCreacion(), post.getTitulo(), post.getSubtitulo(), post.getContenido(), post.getImagen(), categoria, usuario);
             postsDAO.publicarPost(nuevoPost);
         } catch (PersistenciaException ex) {
             throw new FachadaException("No se pudo publicar el post.");
@@ -191,30 +176,73 @@ public class Fachada implements IFachada {
             throw new FachadaException("No se pudo eliminar el post.");
         }
     }
+    
+    public void editarPost(PostDTO postDTO, UsuarioDTO usuario) throws FachadaException{
+        try {
+            Post postExistente = postsDAO.obtenerPostPorID(postDTO.getId());
+
+            if (postExistente == null) {
+                throw new FachadaException("El post no existe.");
+            }
+
+            /**
+             * Si el usuario que quiere editar el post no es el dueño o un
+             * administrador, se lanza excepción.
+             */
+            if (!postExistente.getUsuario().getCorreo().equals(usuario.getCorreo()) && !(usuario instanceof AdministradorDTO)) {
+                throw new FachadaException("No tiene permisos para editar este post.");
+            }
+
+            CategoriaPost categoria;
+            switch (postDTO.getCategoria().toUpperCase()) {
+            case "NOTICIAS":
+                categoria = CategoriaPost.NOTICIAS;
+                break;
+            case "FENOMENO":
+                categoria = CategoriaPost.FENOMENOS;
+                break;
+            case "PLANETAS":
+                categoria = CategoriaPost.PLANETAS;
+                break;
+            case "DESCUBRIMIENTOS":
+                categoria = CategoriaPost.DESCUBRIMIENTO;
+                break;
+            default:
+                categoria = CategoriaPost.INICIO;
+        }
+
+            postExistente.setTitulo(postDTO.getTitulo());
+            postExistente.setSubtitulo(postDTO.getSubtitulo());
+            postExistente.setContenido(postDTO.getContenido());
+            postExistente.setCategoria(categoria);
+            postExistente.setImagen(postDTO.getImagen());
+
+            postsDAO.editarPost(postExistente);
+        } catch (PersistenciaException ex) {
+            throw new FachadaException("No se pudo editar el post.");
+        }
+    }
 
     @Override
     public void comentarPost(ComentarioDTO comentarioDTO, PostDTO postDTO) throws FachadaException {
         try {
             // Obtenemos la entidad de Post.
             Post post = postsDAO.obtenerPostPorID(postDTO.getId());
-            Comun postComun = null;
-            if (postDTO instanceof ComunDTO) {
-                // La convertimos a Post Común.
-                postComun = new Comun(post.getId(), post.getFechaHoraCreacion(), post.getTitulo(), post.getSubtitulo(), post.getContenido(), post.getCategoria(), post.getComentarios(), post.getUsuario(), post.getImagen());
-            } else if (postDTO instanceof AncladoDTO) {
-                // Error si se trata comentar un post anclado.
-                throw new FachadaException("No se pueden comentar posts anclados.");
-            }
-
-            // Buscamos la entidad del usuario que comentó.
-            Normal usuario = (Normal) usuariosDAO.buscarUsuario(comentarioDTO.getUsuario().getCorreo());
+            if (postDTO.getTipoPost().equalsIgnoreCase("Comun")) {
+                Normal usuario = (Normal) usuariosDAO.buscarUsuario(comentarioDTO.getUsuario().getCorreo());
 
             Comentario comentario = new Comentario(
                     comentarioDTO.getFechaHora(),
                     comentarioDTO.getContenido(),
-                    postComun,
+                    post,
                     usuario);
             comentariosDAO.publicarComentario(comentario);
+            } else if (postDTO.getTipoPost().equalsIgnoreCase("Anclado")) {
+                // Error si se trata comentar un post anclado.
+                throw new FachadaException("No se pueden comentar posts anclados.");
+            }
+
+            
         } catch (PersistenciaException ex) {
             Logger.getLogger(FachadaException.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -420,30 +448,20 @@ public class Fachada implements IFachada {
     }
 
     private PostDTO convertirPostAPostDTO(Post post) {
-        PostDTO postDTO = null;
-        if (post instanceof Comun) {
-            postDTO = new ComunDTO(
+        
+          PostDTO postDTO = new PostDTO(
                     post.getId(),
                     post.getFechaHoraCreacion(),
+                    post.getTipoPost(),
                     post.getTitulo(),
                     post.getSubtitulo(),
                     post.getContenido(),
                     post.getCategoria().toString(),
-                    convertirUsuarioAUsuarioDTO(post.getUsuario()),
+                    post.getImagen(),
                     convertirComentariosAComentariosDTO(post.getComentarios()),
-                    post.getImagen());
-        } else {
-            postDTO = new AncladoDTO(
-                    post.getId(),
-                    post.getFechaHoraCreacion(),
-                    post.getTitulo(),
-                    post.getSubtitulo(),
-                    post.getContenido(),
-                    post.getCategoria().toString(),
-                    convertirUsuarioAUsuarioDTO(post.getUsuario()),
-                    convertirComentariosAComentariosDTO(post.getComentarios()),
-                    post.getImagen());
-        }
+                    convertirUsuarioAUsuarioDTO(post.getUsuario())
+                    );
+        
         // Si el post es común, se obtiene el usuario que lo publicó.
         return postDTO;
     }
@@ -543,9 +561,9 @@ public class Fachada implements IFachada {
 
             PostDTO postDTO = convertirPostAPostDTO(post);
 
-            if (postDTO instanceof ComunDTO) {
+            if (postDTO.getTipoPost().equalsIgnoreCase("Comun")) {
                 System.out.println("Comun");
-            } else if (postDTO instanceof AncladoDTO) {
+            } else if (postDTO.getTipoPost().equalsIgnoreCase("Anclado")) {
                 System.out.println("Anclado");
             } else {
                 System.out.println("Ninguno");
@@ -586,28 +604,26 @@ public class Fachada implements IFachada {
     @Override
     public void anclarPost(Long idPost, String correoAdmin) throws FachadaException {
         try {
-            Comun comun = null;
+            Post comun = null;
             try {
-                comun = (Comun) postsDAO.obtenerPostPorID(idPost);
+                comun = postsDAO.obtenerPostPorID(idPost);
+                if (comun.getTipoPost().equalsIgnoreCase("Anclado")) {
+                    throw new FachadaException("El post que trata de anclar ya está anclado.");
+                }
+                comun.setTipoPost("Anclado");
             } catch (ClassCastException cce) {
                 throw new FachadaException("El post que trata de anclar ya está anclado.");
             }
 
             Administrador admin = (Administrador) usuariosDAO.buscarUsuario(correoAdmin);
+            
+            if (admin!=null) {
+                 postsDAO.anclarPost(comun);
+            }else{
+                throw new FachadaException("No tiene permiso de anclar el post");
+            }
 
-            Anclado anclado = new Anclado(
-                    comun.getId(),
-                    comun.getFechaHoraCreacion(),
-                    comun.getTitulo(),
-                    comun.getSubtitulo(),
-                    comun.getContenido(),
-                    comun.getCategoria(),
-                    comun.getComentarios(),
-                    comun.getUsuario(),
-                    admin,
-                    comun.getImagen());
-
-            postsDAO.anclarPost(comun, anclado);
+           
         } catch (PersistenciaException ex) {
             Logger.getLogger(FachadaException.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -623,25 +639,17 @@ public class Fachada implements IFachada {
     @Override
     public void desanclarPost(Long idPost) throws FachadaException {
         try {
-            Anclado anclado = null;
+            Post anclado = null;
             try {
-                anclado = (Anclado) postsDAO.obtenerPostPorID(idPost);
+                anclado = postsDAO.obtenerPostPorID(idPost);
             } catch (ClassCastException cce) {
                 throw new FachadaException("El post que trata de desanclar no está anclado.");
             }
 
-            Comun comun = new Comun(
-                    anclado.getId(),
-                    anclado.getFechaHoraCreacion(),
-                    anclado.getTitulo(),
-                    anclado.getSubtitulo(),
-                    anclado.getContenido(),
-                    anclado.getCategoria(),
-                    anclado.getComentarios(),
-                    anclado.getUsuario(),
-                    anclado.getImagen());
+            Post comun = new Post(
+                    anclado.getId(), "Comun", anclado.getFechaHoraCreacion(), anclado.getTitulo(), anclado.getSubtitulo(), anclado.getContenido(), anclado.getImagen(), anclado.getCategoria(), anclado.getComentarios(), anclado.getUsuario());
 
-            postsDAO.desanclarPost(comun, anclado);
+            postsDAO.desanclarPost(comun);
         } catch (PersistenciaException ex) {
             Logger.getLogger(FachadaException.class.getName()).log(Level.SEVERE, null, ex);
         }   

@@ -6,9 +6,7 @@ package daos;
 
 import Exception.PersistenciaException;
 import com.mycompany.dto.PostDTO;
-import com.mycompany.modelo.Anclado;
 import com.mycompany.modelo.CategoriaPost;
-import com.mycompany.modelo.Comun;
 import com.mycompany.modelo.Post;
 import com.mycompany.modelo.Usuario;
 import java.util.List;
@@ -27,7 +25,7 @@ public interface IPostDAO {
     public void editarPost(Post post) throws PersistenciaException;
     public void eliminarPost(Post post) throws PersistenciaException;
     public Post buscarPostPorAtributos(Post post) throws PersistenciaException;
-    public void anclarPost(Comun postComun, Anclado postAnclado) throws PersistenciaException;
-    public void desanclarPost(Comun comun, Anclado anclado) throws PersistenciaException;
+    public void anclarPost(Post post) throws PersistenciaException;
+    public void desanclarPost(Post  comun) throws PersistenciaException;
     public Long obtenerUltimoPostPorUsuario() throws PersistenciaException;
 }

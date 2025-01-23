@@ -68,6 +68,14 @@
         <servlet-name>PerfilUsuario</servlet-name>
         <servlet-class>servlets.PerfilUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ComentarPost</servlet-name>
+        <servlet-class>servlets.ComentarPost</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResponderComentario</servlet-name>
+        <servlet-class>servlets.ResponderComentario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CrearPost</servlet-name>
         <url-pattern>/CrearPost</url-pattern>
@@ -128,17 +136,24 @@
         <servlet-name>PerfilUsuario</servlet-name>
         <url-pattern>/PerfilUsuario</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComentarPost</servlet-name>
+        <url-pattern>/ComentarPost</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResponderComentario</servlet-name>
+        <url-pattern>/ResponderComentario</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-     <!-- Página de error 404 -->
+    <!-- Página de error 404 -->
     <error-page>
         <error-code>404</error-code>
         <location>/errores/PaginaNoEncontrada.jsp</location>
     </error-page>
-
     <!-- Página de error 500 -->
     <error-page>
         <error-code>500</error-code>

@@ -15,6 +15,7 @@ import fachada.IFachada;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
@@ -124,13 +125,15 @@ public class CrearPost extends HttpServlet {
         }
 // FIN PROCESAMIENTO IMAGEN
         try {
-            ComunDTO postNuevo = new ComunDTO(new GregorianCalendar(), titulo, "", cuerpo, tipoPost, usuario, rutaRelativa);
+            
             String ancla = request.getParameter("isAnclado");
             if (ancla == null) {
+                PostDTO postNuevo = new PostDTO(Calendar.getInstance(), "Comun", titulo, "", cuerpo,tipoPost , rutaRelativa, usuario);
                accesoDatos.publicarPost(postNuevo); 
             }else{
+                PostDTO postNuevo = new PostDTO(Calendar.getInstance(), "Anclado", titulo, "", cuerpo,tipoPost , rutaRelativa, usuario);
                  accesoDatos.publicarPost(postNuevo);
-                accesoDatos.anclarPost(accesoDatos.obtenerUltimoPost(), usuario.getCorreo());
+                
             }
             
             

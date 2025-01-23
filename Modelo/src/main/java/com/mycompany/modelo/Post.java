@@ -32,8 +32,6 @@ import javax.persistence.TemporalType;
  * @author Jose Madero
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipoPost")
 @Table(name = "posts")
 public class Post implements Serializable {
 
@@ -41,7 +39,9 @@ public class Post implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_post")
     protected Long id;
-
+    
+    @Column(name = "TipoPost", nullable = false)
+    protected String tipoPost;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "fecha_hora_creacion", nullable = false)
     protected Calendar fechaHoraCreacion;
@@ -83,15 +83,17 @@ public class Post implements Serializable {
      * @param usuario El usuario que creó el post
      * @param imagen La imagen del post
      */
-    public Post(Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, CategoriaPost categoria, Usuario usuario, String imagen) {
+    
+
+    public Post(String tipoPost, Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, String imagen, CategoriaPost categoria, Usuario usuario) {
+        this.tipoPost = tipoPost;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.contenido = contenido;
+        this.imagen = imagen;
         this.categoria = categoria;
         this.usuario = usuario;
-        this.imagen = imagen;
-        this.comentarios = new LinkedList<>();
     }
 
     /**
@@ -107,16 +109,18 @@ public class Post implements Serializable {
      * @param comentarios Los comentarios del post
      * @param imagen La imagen del post
      */
-    public Post(Long id, Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, CategoriaPost categoria, List<Comentario> comentarios, Usuario usuario, String imagen) {
+    
+    public Post(Long id, String tipoPost, Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, String imagen, CategoriaPost categoria, List<Comentario> comentarios, Usuario usuario) {
         this.id = id;
+        this.tipoPost = tipoPost;
         this.fechaHoraCreacion = fechaHoraCreacion;
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.contenido = contenido;
-        this.categoria = categoria;
-        this.usuario = usuario;
         this.imagen = imagen;
+        this.categoria = categoria;
         this.comentarios = comentarios;
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -126,6 +130,15 @@ public class Post implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getTipoPost() {
+        return tipoPost;
+    }
+
+    public void setTipoPost(String tipoPost) {
+        this.tipoPost = tipoPost;
+    }
+    
 
     public Calendar getFechaHoraCreacion() {
         return fechaHoraCreacion;
@@ -190,6 +203,7 @@ public class Post implements Serializable {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+    
 
     @Override
     public int hashCode() {

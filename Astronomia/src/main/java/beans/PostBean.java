@@ -15,38 +15,43 @@ public class PostBean {
     private Long id;
     private UsuarioBean usuario;
     private Calendar fechaHoraCreacion;
+    private String tipoPost;
     private String titulo;
     private String subtitulo;
     private String contenido;
-    private String tipo;
     private String categoria;
     private String imagen;
     private List<ComentarioBean> comentarios;
 
-    public PostBean(Long id, UsuarioBean usuario, Calendar fechaHoraCreacion, String titulo, String subtitulo, String contenido, String categoria, String imagen, List<ComentarioBean> comentarios,String tipo) {
+    public PostBean(Long id, UsuarioBean usuario, Calendar fechaHoraCreacion, String tipoPost, String titulo, String subtitulo, String contenido, String categoria, String imagen, List<ComentarioBean> comentarios) {
         this.id = id;
         this.usuario = usuario;
         this.fechaHoraCreacion = fechaHoraCreacion;
+        this.tipoPost = tipoPost;
         this.titulo = titulo;
         this.subtitulo = subtitulo;
         this.contenido = contenido;
         this.categoria = categoria;
         this.imagen = imagen;
         this.comentarios = comentarios;
-        this.tipo = tipo;
     }
+
+    
     
 
     public PostBean() {
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTipoPost() {
+        return tipoPost;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipoPost(String tipoPost) {
+        this.tipoPost = tipoPost;
     }
+    
+
+    
     
 
     public Long getId() {

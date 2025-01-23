@@ -8,10 +8,8 @@ import Conexion.IConexion;
 import Exception.FachadaException;
 import Exception.PersistenciaException;
 import com.mycompany.dto.PostDTO;
-import com.mycompany.modelo.Anclado;
 import com.mycompany.modelo.CategoriaPost;
 import com.mycompany.modelo.Comentario;
-import com.mycompany.modelo.Comun;
 import com.mycompany.modelo.Post;
 import com.mycompany.modelo.Usuario;
 import java.util.List;
@@ -174,7 +172,7 @@ public class PostDAO implements IPostDAO {
             int i = 0;
             for (Post post : listaPosts) {
                 i++;
-                if (post instanceof Comun) {
+                if (post.getTipoPost().equalsIgnoreCase("Comun")) {
                     post = obtenerPostPorID(post.getId());
                 }
             }
@@ -216,7 +214,7 @@ public class PostDAO implements IPostDAO {
             int i = 0;
             for (Post post : listaPosts) {
                 i++;
-                if (post instanceof Comun) {
+                if (post.getTipoPost().equalsIgnoreCase("Comun")) {
                     post = obtenerPostPorID(post.getId());
                 }
             }
@@ -329,60 +327,111 @@ public class PostDAO implements IPostDAO {
      */
     @Override
     public Post buscarPostPorAtributos(Post postParaBuscar) throws PersistenciaException {
-        EntityManager em = conexion.crearConexion();
-
-        try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Post> cq = cb.createQuery(Post.class);
-
-            Root<? extends Post> root;
-            if (postParaBuscar instanceof Comun) {
-                root = cq.from(Comun.class);
-            } else if (postParaBuscar instanceof Anclado) {
-                root = cq.from(Anclado.class);
-            } else {
-                root = cq.from(Post.class);
-            }
-
-            cq.select(root);
-
-            if (postParaBuscar.getTitulo() != null) {
-                cq.where(cb.equal(root.get("titulo"), postParaBuscar.getTitulo()));
-            }
-            if (postParaBuscar.getContenido() != null) {
-                cq.where(cb.equal(root.get("contenido"), postParaBuscar.getContenido()));
-            }
-            if (postParaBuscar.getCategoria() != null) {
-                cq.where(cb.equal(root.get("categoria"), postParaBuscar.getCategoria()));
-            }
-
-            if (postParaBuscar instanceof Comun) {
-                Comun comun = (Comun) postParaBuscar;
-                if (comun.getUsuario() != null) {
-                    cq.where(cb.equal(root.get("usuario"), comun.getUsuario()));
-                }
-            }
+//        EntityManager em = conexion.crearConexion();
 //
-//            if (postParaBuscar instanceof Anclado) {
-//                Anclado anclado = (Anclado) postParaBuscar;
-//                if (anclado.getAdministrador() != null) {
-//                    cq.where(cb.equal(root.get("administrador"), anclado.getAdministrador()));
+//        try {
+//            CriteriaBuilder cb = em.getCriteriaBuilder();
+//            CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+//
+//            Root<? extends Post> root;
+//            if (postParaBuscar.getTipoPost().equalsIgnoreCase("Comun")) {
+//                root = cq.from(Comun.class);
+//            } else if (postParaBuscar instanceof Anclado) {
+//                root = cq.from(Anclado.class);
+//            } else {
+//                root = cq.from(Post.class);
+//            }
+//
+//            cq.select(root);
+//
+//            if (postParaBuscar.getTitulo() != null) {
+//                cq.where(cb.equal(root.get("titulo"), postParaBuscar.getTitulo()));
+//            }
+//            if (postParaBuscar.getContenido() != null) {
+//                cq.where(cb.equal(root.get("contenido"), postParaBuscar.getContenido()));
+//            }
+//            if (postParaBuscar.getCategoria() != null) {
+//                cq.where(cb.equal(root.get("categoria"), postParaBuscar.getCategoria()));
+//            }
+//
+//            if (postParaBuscar instanceof Comun) {
+//                Comun comun = (Comun) postParaBuscar;
+//                if (comun.getUsuario() != null) {
+//                    cq.where(cb.equal(root.get("usuario"), comun.getUsuario()));
 //                }
 //            }
-
-            TypedQuery<Post> query = em.createQuery(cq);
-            List<Post> resultados = query.getResultList();
-
-            return resultados.isEmpty() ? null : resultados.get(0);
-        } catch (PersistenceException pe) {
-            throw new PersistenciaException("Error al buscar el post.", pe);
-        } finally {
-            em.close();
-        }
+////
+////            if (postParaBuscar instanceof Anclado) {
+////                Anclado anclado = (Anclado) postParaBuscar;
+////                if (anclado.getAdministrador() != null) {
+////                    cq.where(cb.equal(root.get("administrador"), anclado.getAdministrador()));
+////                }
+////            }
+//
+//            TypedQuery<Post> query = em.createQuery(cq);
+//            List<Post> resultados = query.getResultList();
+//
+//            return resultados.isEmpty() ? null : resultados.get(0);
+//        } catch (PersistenceException pe) {
+//            throw new PersistenciaException("Error al buscar el post.", pe);
+//        } finally {
+//            em.close();
+//        }
+        return null;
+//        EntityManager em = conexion.crearConexion();
+//
+//        try {
+//            CriteriaBuilder cb = em.getCriteriaBuilder();
+//            CriteriaQuery<Post> cq = cb.createQuery(Post.class);
+//
+//            Root<? extends Post> root;
+//            if (postParaBuscar.getTipoPost().equalsIgnoreCase("Comun")) {
+//                root = cq.from(Comun.class);
+//            } else if (postParaBuscar instanceof Anclado) {
+//                root = cq.from(Anclado.class);
+//            } else {
+//                root = cq.from(Post.class);
+//            }
+//
+//            cq.select(root);
+//
+//            if (postParaBuscar.getTitulo() != null) {
+//                cq.where(cb.equal(root.get("titulo"), postParaBuscar.getTitulo()));
+//            }
+//            if (postParaBuscar.getContenido() != null) {
+//                cq.where(cb.equal(root.get("contenido"), postParaBuscar.getContenido()));
+//            }
+//            if (postParaBuscar.getCategoria() != null) {
+//                cq.where(cb.equal(root.get("categoria"), postParaBuscar.getCategoria()));
+//            }
+//
+//            if (postParaBuscar instanceof Comun) {
+//                Comun comun = (Comun) postParaBuscar;
+//                if (comun.getUsuario() != null) {
+//                    cq.where(cb.equal(root.get("usuario"), comun.getUsuario()));
+//                }
+//            }
+////
+////            if (postParaBuscar instanceof Anclado) {
+////                Anclado anclado = (Anclado) postParaBuscar;
+////                if (anclado.getAdministrador() != null) {
+////                    cq.where(cb.equal(root.get("administrador"), anclado.getAdministrador()));
+////                }
+////            }
+//
+//            TypedQuery<Post> query = em.createQuery(cq);
+//            List<Post> resultados = query.getResultList();
+//
+//            return resultados.isEmpty() ? null : resultados.get(0);
+//        } catch (PersistenceException pe) {
+//            throw new PersistenciaException("Error al buscar el post.", pe);
+//        } finally {
+//            em.close();
+//        }
     }
 
     @Override
-    public void anclarPost(Comun postComun, Anclado postAnclado) throws PersistenciaException {
+    public void anclarPost(Post post) throws PersistenciaException {
         // Creamos un entity manager.
         EntityManager em = conexion.crearConexion();
 
@@ -391,27 +440,19 @@ public class PostDAO implements IPostDAO {
             em.getTransaction().begin();
 
             // Se sincroniza la entidad.
-            postComun = em.merge(postComun);
+            em.merge(post);
 
-            // Mandamos a eliminar el post de la tabla de comunes.
-            for (Comentario comentario : postComun.getComentarios()) {
-            em.remove(em.contains(comentario) ? comentario : em.merge(comentario));
-            }
-            em.remove(postComun);
-
-            // Mandamos a guardar el post en la tabla de anclados.
-            em.persist(postAnclado);
+            
 
             // Hacemos el commit y cerramos el entity manager.
             em.getTransaction().commit();
             em.close();
 
             // Imprimimos un mensaje de que se eliminó un post.
-            logger.log(Level.INFO, "Se ha eliminado 1 post común correctamente.");
-            logger.log(Level.INFO, "Se ha insertado 1 post anclado correctamente.");
+            logger.log(Level.INFO, "Se ha anclado 1 post común correctamente.");
         } catch (PersistenceException pe) {
             logger.log(Level.WARNING, pe.getMessage());
-            throw new PersistenciaException("No se pudo eliminar el post.");
+            throw new PersistenciaException("No se pudo anclar el post.");
         }
     }
 
@@ -423,7 +464,7 @@ public class PostDAO implements IPostDAO {
      * @throws PersistenciaException 
      */
     @Override
-    public void desanclarPost(Comun postComun, Anclado postAnclado) throws PersistenciaException {
+    public void desanclarPost(Post comun) throws PersistenciaException {
         // Creamos un entity manager.
         EntityManager em = conexion.crearConexion();
 
@@ -432,23 +473,17 @@ public class PostDAO implements IPostDAO {
             em.getTransaction().begin();
 
             // Se sincroniza la entidad.
-            postAnclado = em.merge(postAnclado);
+            em.merge(comun);
 
-            // Mandamos a eliminar el post de la tabla de comunes.
-            em.remove(postAnclado);
-
-            // Mandamos a guardar el post en la tabla de anclados.
-            em.persist(postComun);
-
+            
             // Hacemos el commit y cerramos el entity manager.
             em.getTransaction().commit();
             em.close();
 
-            // Imprimimos un mensaje de que se eliminó un post.
-            logger.log(Level.INFO, "Se ha eliminado 1 post anclado correctamente.");
-            logger.log(Level.INFO, "Se ha insertado 1 post común correctamente.");
+            
+            logger.log(Level.INFO, "Se ha descanclado 1 post común correctamente.");
         } catch (PersistenceException pe) {
-            throw new PersistenciaException("No se pudo eliminar el post.");
+            throw new PersistenciaException("No se pudo desanclar el post.");
         }
     }
     

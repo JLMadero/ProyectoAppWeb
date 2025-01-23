@@ -21,11 +21,13 @@ public interface IFachada {
     
     public void registrarUsuario(UsuarioDTO usuario) throws FachadaException;
 
-    public void publicarPost(ComunDTO post) throws FachadaException;
+    public void publicarPost(PostDTO post) throws FachadaException;
     
-    public void publicarPostAnclado(AncladoDTO post) throws FachadaException;
+    public void publicarPostAnclado(PostDTO post) throws FachadaException;
 
     public void eliminarPost(Long id, UsuarioDTO usuario) throws FachadaException;
+    
+    public void editarPost(PostDTO postDTO, UsuarioDTO usuario) throws FachadaException;
 
     public void comentarPost(ComentarioDTO comentarioDTO, PostDTO postDTO) throws FachadaException;
 

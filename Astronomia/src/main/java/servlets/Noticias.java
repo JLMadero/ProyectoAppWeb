@@ -92,22 +92,12 @@ public class Noticias extends HttpServlet {
                 : null;
 
         String tipo = "";
-        if (dto instanceof ComunDTO) {
+        if (dto.getTipoPost().equalsIgnoreCase("Comun")) {
             tipo = "comun";
-        } else if (dto instanceof AncladoDTO) {
+        } else if (dto.getTipoPost().equalsIgnoreCase("Anclado")) {
             tipo = "anclado";
         }
-        return new PostBean(
-                dto.getId(),
-                toBean(dto.getUsuario()),
-                dto.getFechaHoraCreacion(),
-                dto.getTitulo(),
-                dto.getSubtitulo(),
-                dto.getContenido(),
-                dto.getCategoria(),
-                dto.getImagen(),
-                comentarios,tipo
-        );
+        return new PostBean(dto.getId(), toBean(dto.getUsuario()), dto.getFechaHoraCreacion(), tipo, dto.getTitulo(), dto.getSubtitulo(), dto.getContenido(),dto.getCategoria(), dto.getImagen(), comentarios);
     }
 
     /**

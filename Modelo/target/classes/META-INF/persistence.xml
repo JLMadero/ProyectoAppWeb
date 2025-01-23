@@ -3,9 +3,7 @@
   <persistence-unit name="DbAstro" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.modelo.Administrador</class>
-    <class>com.mycompany.modelo.Anclado</class>
     <class>com.mycompany.modelo.Comentario</class>
-    <class>com.mycompany.modelo.Comun</class>
     <class>com.mycompany.modelo.Estado</class>
     <class>com.mycompany.modelo.Municipio</class>
     <class>com.mycompany.modelo.Normal</class>

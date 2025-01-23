@@ -56,7 +56,7 @@ public class Persistencia {
         
         
         //publicar post
-//        fachada.publicarPost(new ComunDTO(fecha, "omg", "", "asfasfaff", "FENOMENO", usuarioBuscado, "FOTO"));
+//        fachada.publicarPost(new PostDTO(fecha, "Comun", "asdfasdasd", "afadas", "asdasd", "FENOMENOS", "AS", usuarioBuscado));
 //        
 //        System.out.println(fachada.obtenerPostID(2L));
 //        
@@ -130,10 +130,10 @@ public class Persistencia {
 //        fachada.eliminarComentario(new ComentarioDTO(9L, fecha, "", new NormalDTO("madero@gmail.com", "Madero")), usuarioBuscado);
 
             //eliminar post
-//            fachada.eliminarPost(1L, usuarioBuscado);
+            fachada.eliminarPost(1L, usuarioBuscado);
 
             // comentar comentario
-//            fachada.responderComentario(new ComentarioDTO(fecha, "asfasf", fachada.obtenerPostID(6L), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerComentarioID(8L));
+//            fachada.responderComentario(new ComentarioDTO(fecha, "asfasf", fachada.obtenerPostID(1L), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerComentarioID(1L));
        
             //anclar
 //              IConexion conexion = new Conexion();
@@ -141,6 +141,7 @@ public class Persistencia {
 //                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("madero26@gmail.com", "a", "b", "c", "Maderito", AESEncriptador.encriptar("123") , "1", "foto", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
                  
 //            fachada.anclarPost(1L, "madero26@gmail.com");
+//            fachada.desanclarPost(1L);
 //            fachada.anclarPost(4L, "madero26@gmail.com");
 //            fachada.desanclarPost(4l);
 
@@ -161,7 +162,7 @@ public class Persistencia {
 //                        System.out.println(p);
 //                    }
 //                }
-                System.out.println(fachada.obtenerUltimoPost());
+//                System    .out.println(fachada.obtenerUltimoPost());
                 
                 
         
