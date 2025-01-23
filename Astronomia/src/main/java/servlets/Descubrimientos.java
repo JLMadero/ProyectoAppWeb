@@ -64,6 +64,10 @@ public class Descubrimientos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("HOLA DESDE SERVLET DESCUBRIMIENTOS");
+        System.out.println("HOLA DESDE SERVLET DESCUBRIMIENTOS");
+        System.out.println("HOLA DESDE SERVLET DESCUBRIMIENTOS");
+        System.out.println("HOLA DESDE SERVLET DESCUBRIMIENTOS");
+        System.out.println("HOLA DESDE SERVLET DESCUBRIMIENTOS");
        IFachada accesoDatos = new Fachada();
         try {
             List<PostDTO> posts = accesoDatos.obtenerPostsPorCategoria(CategoriaPost.DESCUBRIMIENTO);
@@ -71,6 +75,10 @@ public class Descubrimientos extends HttpServlet {
             List<PostBean> postBeans = posts.stream()
                     .map(this::toBean)
                     .collect(Collectors.toList());
+            
+            for(PostBean post: postBeans){
+                
+            }
 
             request.setAttribute("posts", postBeans);
             System.out.println("SERVLET POSTS ");
@@ -81,11 +89,20 @@ public class Descubrimientos extends HttpServlet {
         }
     }
     
-    private PostBean toBean(PostDTO dto) {
+    
+    private PostBean toBean(PostDTO dto){
         if (dto == null) {
             return null;
         }
-
+        IFachada accesoDatos = new Fachada();
+        try {
+            List<ComentarioDTO> com = accesoDatos.obtenerComentariosPost(dto.getId());
+            if(!com.isEmpty()){
+                dto.setComentarios(com);
+            }
+            
+        } catch (FachadaException ex) {
+        }
         // Convierte comentarios
         List<ComentarioBean> comentarios = dto.getComentarios() != null
                 ? dto.getComentarios().stream().map(this::toBean).collect(Collectors.toList())

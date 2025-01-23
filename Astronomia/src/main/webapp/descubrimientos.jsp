@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="resources/styles/general.css"/>
         <link rel="stylesheet" href="resources/styles/descubrimientos.css"/>
         <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
-        <script src="resources/js/AgregarComentario.js" defer></script>
 
     </head>
     <body>
@@ -50,12 +49,22 @@
                                 <div class="comentariosTodos">
                                     <c:forEach items="${post.comentarios}" var="comentario">
                                         <p class="coments">@${comentario.nombreUsuario}: ${comentario.contenido}</p>
-                                        <button class="eliminar" onclick="location.href = 'EliminarComentario.jsp?id=${comentario.id}'">Eliminar</button>
+
+                                        <form id="form-comentario-${comentario.id}" class="form-comentarioEliminarComentario">
+                                            <input type="hidden" id="postId-${comentario.id}" name="postId" value="${comentario.id}">
+                                            <button class="eliminar" type="submit">Eliminar</button>
+                                        </form>
                                     </c:forEach>
                                 </div>
                                 <div class="botones">
-                                    <button class="desanclar" onclick="location.href = 'DesanclarPost.jsp?id=${post.id}'">Desanclar</button>
-                                    <button class="eliminar" onclick="location.href = 'EliminarPost.jsp?id=${post.id}'">Eliminar</button>
+                                    <form id="form-comentario-${post.id}" class="form-comentarioDesanclar">
+                                        <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                        <button class="desanclar" type="submit">Desanclar</button>
+                                    </form>
+                                    <form id="form-comentario-${post.id}" class="form-comentarioEliminar">
+                                        <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                        <button class="eliminar" type="submit">Eliminar</button>
+                                    </form>
                                 </div>
                             </c:if>
 
@@ -76,14 +85,24 @@
                                 <div class="comentariosTodos">
                                     <c:forEach items="${post.comentarios}" var="comentario">
                                         <p class="coments">@${comentario.nombreUsuario}: ${comentario.contenido}</p>
-                                        <div id="comentarios">
-                                            <!-- Aquí se cargarán los comentarios a través de JavaScript y Fetch -->
-                                        </div>
+                                        <c:forEach items="${comentario.respuesta}" var="respuesta">
+                                            <p class="coments">@${respuesta.nombreUsuario}: ${respuesta.contenido}</p>
+
+                                            <!-- Vista de administrador: eliminar comentario -->
+                                            <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
+                                                <form id="form-comentario-${respuesta.id}" class="form-comentarioEliminarComentarioRespuesta">
+                                            <input type="hidden" id="postId-${respuesta.id}" name="postId" value="${respuesta.id}">
+                                            <button class="eliminar" type="submit">Eliminar</button>
+                                        </form>
+                                            </c:if>
+                                        </c:forEach>
                                         <!-- Vista de administrador: eliminar comentario -->
                                         <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
-                                            <button class="eliminar" onclick="location.href = 'EliminarComentario.jsp?id=${comentario.id}'">Eliminar</button>
+                                            <form id="form-comentario-${comentario.id}" class="form-comentarioEliminarComentario">
+                                            <input type="hidden" id="postId-${comentario.id}" name="postId" value="${comentario.id}">
+                                            <button class="eliminar" type="submit">Eliminar</button>
+                                        </form>
                                         </c:if>
-
                                         <!-- Vista de usuario común: solo responder -->
                                         <c:if test="${sessionScope.usuario.tipo != 'administrador'}">
                                             <form id="comentarioForm${post.id}">
@@ -94,21 +113,28 @@
                                         </c:if>
                                     </c:forEach>
                                     <c:if test="${sessionScope.usuario.tipo != 'administrador'}">
-                                        <form id="comentarioForm${post.id}">
-                                            <textarea id="contenido${post.id}" name="contenido" placeholder="Escribe un comentario..." required></textarea>
-                                            <input type="hidden" id="postId${post.id}" name="postId" value="${post.id}">
+                                        <form id="form-comentario-${post.id}" class="form-comentario">
+                                            <textarea name="comentario" id="comentario-${post.id}" class="texto" placeholder="Escribe un comentario..." required></textarea>
+                                            <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
                                             <button type="submit">Comentar</button>
                                         </form>
                                     </c:if>
 
-                                    <!-- Vista de administrador -->
-                                    <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
-                                        <div class="botones">
-                                            <button class="anclar" onclick="location.href = 'AnclarPost.jsp?id=${post.id}'">Anclar</button>
-                                            <button class="eliminar" onclick="location.href = 'EliminarPost.jsp?id=${post.id}'">Eliminar</button>
-                                        </div>
-                                    </c:if>
+
                                 </div>
+                                <!-- Vista de administrador -->
+                                <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
+                                    <div class="botones">
+                                        <form id="form-comentario-${post.id}" class="form-comentarioAnclar">
+                                            <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                            <button class="anclar" type="submit">Anclar</button>
+                                        </form>
+                                        <form id="form-comentario-${post.id}" class="form-comentarioEliminar">
+                                            <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                            <button class="eliminar" type="submit">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </c:if>
                             </c:if>
                         </c:forEach>
                         <%--<div class="segundoPost">
@@ -152,6 +178,11 @@
 
 
         </main> 
+        <script src="resources/js/AgregarComentario.js" type="application/javascript"></script>
+        <script src="resources/js/AnclarPost.js" type="application/javascript"></script>
+        <script src="resources/js/DesanclarPost.js" type="application/javascript"></script>
+        <script src="resources/js/EliminarPost.js" type="application/javascript"></script>
+        <script src="resources/js/EliminarComentario.js" type="application/javascript"></script>
 
         <footer>
             <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>

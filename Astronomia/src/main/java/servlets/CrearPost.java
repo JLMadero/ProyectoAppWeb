@@ -127,12 +127,13 @@ public class CrearPost extends HttpServlet {
         try {
             
             String ancla = request.getParameter("isAnclado");
+            
             if (ancla == null) {
                 PostDTO postNuevo = new PostDTO(Calendar.getInstance(), "Comun", titulo, "", cuerpo,tipoPost , rutaRelativa, usuario);
                accesoDatos.publicarPost(postNuevo); 
             }else{
                 PostDTO postNuevo = new PostDTO(Calendar.getInstance(), "Anclado", titulo, "", cuerpo,tipoPost , rutaRelativa, usuario);
-                 accesoDatos.publicarPost(postNuevo);
+                 accesoDatos.publicarPostAnclado(postNuevo);
                 
             }
             

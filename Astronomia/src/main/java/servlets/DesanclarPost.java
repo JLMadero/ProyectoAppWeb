@@ -24,7 +24,7 @@ import org.json.JSONObject;
  *
  * @author jl4ma
  */
-public class EliminarComentario extends HttpServlet {
+public class DesanclarPost extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -69,7 +69,9 @@ public class EliminarComentario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("ELIMINAR COMENTARIO");
+        System.out.println("DesanclarPOST");
+        System.out.println("DesanclarPOST");
+        System.out.println("DesanclarPOST");
         IFachada accesoDatos = new Fachada();
         // Leer el cuerpo del JSON enviado por Fetch API
         StringBuilder sb = new StringBuilder();
@@ -93,7 +95,7 @@ public class EliminarComentario extends HttpServlet {
         }
 
         try {
-            accesoDatos.eliminarComentario(accesoDatos.obtenerComentarioID(postId), usuario);
+            accesoDatos.desanclarPost(postId);
         } catch (FachadaException ex) {
             Logger.getLogger(ComentarPost.class.getName()).log(Level.SEVERE, null, ex);
         }

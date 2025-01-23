@@ -86,6 +86,15 @@ public class Fenomenos extends HttpServlet {
             return null;
         }
 
+        IFachada accesoDatos = new Fachada();
+        try {
+            List<ComentarioDTO> com = accesoDatos.obtenerComentariosPost(dto.getId());
+            if(!com.isEmpty()){
+                dto.setComentarios(com);
+            }
+            
+        } catch (FachadaException ex) {
+        }
         // Convierte comentarios
         List<ComentarioBean> comentarios = dto.getComentarios() != null
                 ? dto.getComentarios().stream().map(this::toBean).collect(Collectors.toList())

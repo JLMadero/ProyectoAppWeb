@@ -165,6 +165,40 @@ public class PostDTO {
         this.imagen = imagen;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setFechaHoraCreacion(Calendar fechaHoraCreacion) {
+        this.fechaHoraCreacion = fechaHoraCreacion;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public void setSubtitulo(String subtitulo) {
+        this.subtitulo = subtitulo;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setComentarios(List<ComentarioDTO> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public void setUsuario(UsuarioDTO usuario) {
+        this.usuario = usuario;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "PostDTO{" + "id=" + id + ", fechaHoraCreacion=" + fechaHoraCreacion + ", titulo=" + titulo + ", subtitulo=" + subtitulo + ", contenido=" + contenido + ", categoria=" + categoria + ", imagen=" + imagen + ", comentarios=" + comentarios + ", usuario=" + usuario + '}';

@@ -28,13 +28,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONObject;
 import servlets.CrearPost;
 
 /**
  *
  * @author jl4ma
  */
-@WebServlet("/ComentarioServlet")
 public class ComentarPost extends HttpServlet {
 
     private IFachada accesoDatos;
@@ -88,57 +88,109 @@ public class ComentarPost extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-          response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
-
-    PrintWriter out = response.getWriter();
-    Map<String, String> respuesta = new HashMap<>();
-
-    try {
-        // Obtener usuario de la sesión
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            throw new Exception("Usuario no autenticado");
+        System.out.println("COMENTARIOPOST");
+        System.out.println("COMENTARIOPOST");
+        System.out.println("COMENTARIOPOST");
+        // Leer el cuerpo del JSON enviado por Fetch API
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader reader = request.getReader()) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
         }
+
+        // Convertir a un objeto JSON
+        JSONObject json = new JSONObject(sb.toString());
+
+        // Extraer datos del JSON
+        String comentario = json.getString("comentario");
+        Long postId = Long.valueOf(json.getInt("postId"));
+        UsuarioDTO usuario = null;
+        try {
+            usuario = accesoDatos.obtenerUsuario(((UsuarioBean) request.getSession().getAttribute("usuario")).getCorreo());
+        } catch (FachadaException ex) {
+            Logger.getLogger(CrearPost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            accesoDatos.comentarPost(new ComentarioDTO(Calendar.getInstance(), comentario, accesoDatos.obtenerComentarioID(postId), new NormalDTO(usuario.getCorreo(), usuario.getNombreUsuario())), accesoDatos.obtenerPostID(postId));
+        } catch (FachadaException ex) {
+            Logger.getLogger(ComentarPost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // Redirigir al servlet Descubrimientos después de procesar el comentario
+            
+            
         
-        UsuarioBean usuarioSesion = (UsuarioBean) session.getAttribute("usuario");
-        NormalDTO usuarioActual = (NormalDTO) accesoDatos.obtenerUsuario(usuarioSesion.getCorreo());
-
-        if (usuarioActual == null) {
-            throw new Exception("Usuario no autenticado");
-        }
-
-        // Leer JSON del cuerpo de la solicitud
-        BufferedReader reader = request.getReader();
-        ComentarioDTO comentarioDTO = gson.fromJson(reader, ComentarioDTO.class);
-
-        // Validaciones
-        if (comentarioDTO == null || comentarioDTO.getContenido() == null || comentarioDTO.getContenido().trim().isEmpty()) {
-            throw new Exception("El contenido del comentario no puede estar vacío");
-        }
-
-        // Completar datos del comentario
-        comentarioDTO.setUsuario(usuarioActual);
-        comentarioDTO.setFechaHora(Calendar.getInstance());
-
-        // Guardar comentario
-        accesoDatos.comentarPost(comentarioDTO, comentarioDTO.getPost());
-
-        // Respuesta de éxito
-        respuesta.put("status", "success");
-        respuesta.put("message", "Comentario agregado correctamente");
-        response.setStatus(HttpServletResponse.SC_CREATED);
-
-    } catch (Exception e) {
-        // Manejo de errores
-        respuesta.put("status", "error");
-        respuesta.put("message", e.getMessage());
-        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-    }
-
-    // Enviar respuesta
-    out.print(gson.toJson(respuesta));
-    out.flush();
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+//          response.setContentType("application/json");
+//    response.setCharacterEncoding("UTF-8");
+//
+//    PrintWriter out = response.getWriter();
+//    Map<String, String> respuesta = new HashMap<>();
+//
+//    try {
+//        // Obtener usuario de la sesión
+//        HttpSession session = request.getSession(false);
+//        if (session == null) {
+//            throw new Exception("Usuario no autenticado");
+//        }
+//        
+//        UsuarioBean usuarioSesion = (UsuarioBean) session.getAttribute("usuario");
+//        NormalDTO usuarioActual = (NormalDTO) accesoDatos.obtenerUsuario(usuarioSesion.getCorreo());
+//
+//        if (usuarioActual == null) {
+//            throw new Exception("Usuario no autenticado");
+//        }
+//
+//        // Leer JSON del cuerpo de la solicitud
+//        BufferedReader reader = request.getReader();
+//        ComentarioDTO comentarioDTO = gson.fromJson(reader, ComentarioDTO.class);
+//
+//        // Validaciones
+//        if (comentarioDTO == null || comentarioDTO.getContenido() == null || comentarioDTO.getContenido().trim().isEmpty()) {
+//            throw new Exception("El contenido del comentario no puede estar vacío");
+//        }
+//
+//        // Completar datos del comentario
+//        comentarioDTO.setUsuario(usuarioActual);
+//        comentarioDTO.setFechaHora(Calendar.getInstance());
+//
+//        // Guardar comentario
+//        accesoDatos.comentarPost(comentarioDTO, comentarioDTO.getPost());
+//
+//        // Respuesta de éxito
+//        respuesta.put("status", "success");
+//        respuesta.put("message", "Comentario agregado correctamente");
+//        response.setStatus(HttpServletResponse.SC_CREATED);
+//
+//    } catch (Exception e) {
+//        // Manejo de errores
+//        respuesta.put("status", "error");
+//        respuesta.put("message", e.getMessage());
+//        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//    }
+//
+//    // Enviar respuesta
+//    out.print(gson.toJson(respuesta));
+//    out.flush();
     
 
 //        IFachada fachada = new Fachada();
@@ -233,4 +285,22 @@ public class ComentarPost extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private static class ComentarioData {
+        private String contenido;
+        private String usuarioId;
+        private Long postId;
+
+        public String getContenido() {
+            return contenido;
+        }
+
+        public String getUsuarioId() {
+            return usuarioId;
+        }
+
+        public Long getPostId() {
+            return postId;
+        }
+        
+    }
 }

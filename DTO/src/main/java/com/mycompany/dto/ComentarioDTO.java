@@ -133,6 +133,7 @@ public class ComentarioDTO {
     public void setUsuario(NormalDTO usuario) {
         this.usuario = usuario;
     }
+    
 
     @Override
     public String toString() {

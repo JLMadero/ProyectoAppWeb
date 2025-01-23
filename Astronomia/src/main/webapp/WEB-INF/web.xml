@@ -76,6 +76,10 @@
         <servlet-name>ResponderComentario</servlet-name>
         <servlet-class>servlets.ResponderComentario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DesanclarPost</servlet-name>
+        <servlet-class>servlets.DesanclarPost</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CrearPost</servlet-name>
         <url-pattern>/CrearPost</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>ResponderComentario</servlet-name>
         <url-pattern>/ResponderComentario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DesanclarPost</servlet-name>
+        <url-pattern>/DesanclarPost</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
