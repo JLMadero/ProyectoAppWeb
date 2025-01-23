@@ -4,8 +4,18 @@
  */
 package servlets;
 
+import Exception.FachadaException;
+import beans.ComentarioBean;
+import beans.UsuarioBean;
+import com.mycompany.dto.ComentarioDTO;
+import com.mycompany.dto.PostDTO;
+import fachada.Fachada;
+import fachada.IFachada;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +27,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Contenido extends HttpServlet {
 
+    private IFachada accesoDatos;
+
+    @Override
+    public void init() throws ServletException {
+        accesoDatos = new Fachada();  // Inicialización del acceso a datos.
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,16 +46,7 @@ public class Contenido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Contenido</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Contenido at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 
@@ -55,7 +62,32 @@ public class Contenido extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        System.out.println("HOLA, LLEGASTE AL SERVLET COMENTARIO - GET");
+        Long id = Long.valueOf(request.getParameter("id"));
+        try {
+            // Obtiene los posts asociados al usuario.
+            List<ComentarioDTO> comentarios = accesoDatos.obtenerComentariosPost(id);
+            
+            List<ComentarioBean> postBeans = comentarios.stream()
+                    .map(this::toBean)
+                    .collect(Collectors.toList());
+            request.setAttribute("listaComentarios",postBeans );
+
+            String referer = request.getHeader("Referer");
+        
+        // Validar si el Referer existe
+        if (referer != null) {
+            // Redirigir a la página que envió la solicitud
+            response.sendRedirect("descubrimientos.jsp");
+        } else {
+            // Si no hay Referer, redirigir a una página por defecto
+            response.sendRedirect("inicio.jsp");
+        }
+        } catch (FachadaException e) {
+            System.out.println("Error al obtener posts");
+            request.setAttribute("error", "Ocurrió un error al obtener los posts");
+            this.getServletContext().getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -81,5 +113,18 @@ public class Contenido extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    private ComentarioBean toBean(ComentarioDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+        return new ComentarioBean(
+                dto.getId(),
+                dto.getUsuario().getNombreUsuario(),
+                dto.getFechaHora().getTime().toString(),
+                dto.getContenido(),
+                null //Aun no se pueden poner respustas saluditos
+        );
+    }
 
 }

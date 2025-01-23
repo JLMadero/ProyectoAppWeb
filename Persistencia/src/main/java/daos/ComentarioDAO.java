@@ -125,4 +125,26 @@ public class ComentarioDAO implements IComentarioDAO {
             throw new PersistenciaException("No se pudo insertar el comentario.");
         }
     }
+
+    @Override
+    public List<Comentario> obtenerComentariosPost(Long id) throws PersistenciaException {
+          EntityManager em = conexion.crearConexion();
+        
+        try {
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Comentario> cq = cb.createQuery(Comentario.class);
+            Root<Comentario> root = cq.from(Comentario.class);
+            cq.select(root).where(cb.equal(root.get("post").get("id"), id));
+            List<Comentario> comentario = em.createQuery(cq).getResultList();
+            logger.log(Level.INFO, "Se ha consultado la tabla 'comentarios' y se obtuvo 1 resultado.");
+            return comentario;
+        } catch (NoResultException nre){
+            logger.log(Level.INFO, "La tabla 'comentarios' está vacía.");
+            return null;
+        } catch (PersistenceException pe) {
+            throw new PersistenciaException("No se pudo realizar la consulta.");
+        } finally {
+            em.close();
+        }      
+    }
 }

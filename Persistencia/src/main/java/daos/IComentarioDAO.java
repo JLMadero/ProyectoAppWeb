@@ -16,6 +16,7 @@ public interface IComentarioDAO {
     
     public Comentario obtenerComentario(Long id) throws PersistenciaException;
     public List<Comentario> obtenerTodosComentarios() throws PersistenciaException;
+    public List<Comentario> obtenerComentariosPost(Long id) throws PersistenciaException;
     public void eliminarComentario(Comentario comentario) throws PersistenciaException;
     public void publicarComentario(Comentario comentario) throws PersistenciaException;
     public void responderComentario(Comentario comentario) throws PersistenciaException;

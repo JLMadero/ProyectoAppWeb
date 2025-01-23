@@ -3,10 +3,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : 16 ene 2025, 01:29:40
+    Created on : 22 ene 2025, 17:42:03
     Author     : jl4ma
 */
-.descubrimientosContenido{
+.Contenido{
     display: flex;  
     flex-direction: column;
     align-items: center;
@@ -143,4 +143,3 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border-radius: 25px;
     font-size: 12px;
 }
-

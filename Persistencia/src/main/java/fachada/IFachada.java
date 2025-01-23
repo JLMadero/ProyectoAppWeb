@@ -48,6 +48,7 @@ public interface IFachada {
     public Long obtenerUltimoPost() throws FachadaException;
 
     public ComentarioDTO obtenerComentarioID(Long id) throws FachadaException;
+    public List<ComentarioDTO> obtenerComentariosPost(Long id) throws FachadaException;
 
     public void anclarPost(Long idPost, String correoAdmin) throws FachadaException;
 

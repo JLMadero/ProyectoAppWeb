@@ -665,4 +665,20 @@ public class Fachada implements IFachada {
         return null;
     }
 
+    @Override
+    public List<ComentarioDTO> obtenerComentariosPost(Long id) throws FachadaException {
+        try {
+            List<ComentarioDTO> com =  this.convertirComentariosAComentariosDTO(comentariosDAO.obtenerComentariosPost(id));
+            if (com.isEmpty()) {
+                throw new FachadaException("El post no tiene comentarios");
+            }else{
+                return com;
+            }
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(Fachada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
+
 }
