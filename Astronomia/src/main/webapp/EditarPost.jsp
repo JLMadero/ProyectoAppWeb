@@ -1,20 +1,18 @@
 <%-- 
-    Document   : post
-    Created on : 17 ene 2025, 22:48:29
+    Document   : EditarPost
+    Created on : 23 ene 2025, 19:31:07
     Author     : jl4ma
 --%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Crear Post - Jose Madero</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Editar Post - Jose Madero</title>
         <link rel="stylesheet" href="resources/styles/general.css"/>
         <link rel="stylesheet" href="resources/styles/post.css"/>
         <link rel="icon" type="image/x-icon" href="resources/imgs/galaxia.webp">
-
     </head>
     <body>
         <header>
@@ -35,11 +33,11 @@
             <section class="right-side">
                 <div class="crearPost">
                     <h2>Nuevo Post:</h2>
-                    <form action="CrearPost" method="post" enctype="multipart/form-data">
+                    <form class="form-comentarioEditarPost" enctype="multipart/form-data">
                         <label for="titulo">Titulo</label>
-                        <input type="text" name="titulo" required>
+                        <input type="text" name="titulo" value="${posts.titulo}" required>
                         <label for="contenido">Contenido</label>
-                        <textarea id="contenido" name="contenido" required></textarea>
+                        <textarea id="contenido" name="contenido" required>${posts.contenido}</textarea>
                         <div class="imgTipo">
                             <div>
                                 <label for="imagen">Imagen</label>
@@ -76,7 +74,5 @@
 
         </main>
         
-
     </body>
 </html>
-

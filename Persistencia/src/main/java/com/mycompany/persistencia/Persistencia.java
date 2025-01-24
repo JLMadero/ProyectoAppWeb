@@ -130,7 +130,7 @@ public class Persistencia {
 //        fachada.eliminarComentario(new ComentarioDTO(9L, fecha, "", new NormalDTO("madero@gmail.com", "Madero")), usuarioBuscado);
 
             //eliminar post
-            fachada.eliminarPost(1L, usuarioBuscado);
+//            fachada.eliminarPost(1L, usuarioBuscado);
 
             // comentar comentario
 //            fachada.responderComentario(new ComentarioDTO(fecha, "asfasf", fachada.obtenerPostID(1L), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerComentarioID(1L));
@@ -138,7 +138,7 @@ public class Persistencia {
             //anclar
 //              IConexion conexion = new Conexion();
 //                 AbstractDAOFactory fabrica = new DAOFactory(conexion);
-//                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("madero26@gmail.com", "a", "b", "c", "Maderito", AESEncriptador.encriptar("123") , "1", "foto", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
+//                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("madero26@gmail.com", "a", "b", "c", "Maderito", AESEncriptador.encriptar("123") , "1", "resources/imgs/avatares/planeta0.jpeg.jpg", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
                  
 //            fachada.anclarPost(1L, "madero26@gmail.com");
 //            fachada.desanclarPost(1L);

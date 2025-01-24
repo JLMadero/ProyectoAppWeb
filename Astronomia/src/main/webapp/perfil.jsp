@@ -24,9 +24,9 @@
     </head>
     <body>
         <header>
-          <%@include file="./fragmentos/encabezado.xhtml"%>  
+            <%@include file="./fragmentos/encabezado.xhtml"%>  
         </header>
-        
+
 
         <main class="contenido">
             <section class="left-side">
@@ -50,18 +50,32 @@
                     <c:forEach items="${requestScope.listaPosts}" var="post">
                         <p class="tituloPost">${post.getTitulo()}</p>
                         <img class="fotoPost" src="./resources/${post.getImagen()}" alt="alt"/>
+                        <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
+                            <form id="form-comentario-${post.id}" class="form-comentarioEditar">
+                                <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                <button class="editar" type="submit">Editar</button>
+                            </form>
+                            <form id="form-comentario-${post.id}" class="form-comentarioEliminar">
+                                <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                <button class="eliminar" type="submit">Eliminar</button>
+                            </form>
+
+                        </c:if>
                         <div>
-                            <button class="editar" onclick="location.href = 'EditarPost.jsp?id=${post.getId()}'">Editar</button>
-                            <button class="eliminar" onclick="location.href = 'EliminarPost.jsp?id=${post.getId()}'">Eliminar</button>
+                            <c:if test="${sessionScope.usuario.tipo != 'administrador'}">
+                                <form id="form-comentario-${post.id}" class="form-comentarioEditar">
+                                    <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
+                                    <button class="editar" type="submit">Editar</button>
+                                </form>
+                            </c:if>
                         </div>
                     </c:forEach>
                 </div>
-                
+                <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>  
             </section> 
         </main>
-                
-                <footer>
-                  <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>  
-                </footer>
+        <script src="resources/js/EliminarPost.js" type="application/javascript"></script>
+        <script src="resources/js/EditarPost.js" type="application/javascript"></script>
+
     </body>
 </html>

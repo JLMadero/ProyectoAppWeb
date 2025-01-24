@@ -137,45 +137,11 @@
                                 </c:if>
                             </c:if>
                         </c:forEach>
-                        <%--<div class="segundoPost">
-                            <div class="postComun2">
-                            <img src="resources/imgs/galaxia.webp" alt="galaxy"/>
-                            <p class="userFecha">@JoseMadero 13/01/25</p>
-                            <p class="tituloPost">Una nueva Galaxia a lado de Andromeda!!!</p>
-                            <p class="comentarios">Comentarios: (?) </p>
-
-                    </div>
-                        <div class="botones">
-
-                        <button class="desanclar">Desanclar</button>
-                        <button class="eliminar">Eliminar</button>
-                        </div>
-                    </div>
-                    <div class="primerPost">
-                    <div class="postComun">
-                        <img src="resources/imgs/galaxia.webp" alt="galaxy"/>
-                        <p class="userFecha">@JoseMadero 13/01/25</p>
-                        <p class="tituloPost">Una nueva Galaxia a lado de Andromeda!!!</p>
-                        <p class="comentarios">Comentarios: (?) </p>
-                        <div class="comentariosTodos">
-                            <p class="coments">@kasdfad: Asombroso!!!</p>
-                            <button>Eliminar</button>
-                            <p class="coments">@kasffa: Me encanta!!!</p>
-                            <button>Eliminar</button>
-                            <p class="coments3">@asad: Si es asombroso.</p>
-                            <button class="coments3">Eliminar</button>
-                        </div>
-                    </div>
-                    <div class="botones">
-                        <button class="anclar">Anclar</button>
-                        <button class="eliminar">Eliminar</button>
-                    </div>
-                    </div>
-                        --%>
                     </div>
 
             </section>
 
+            <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>
 
         </main> 
         <script src="resources/js/AgregarComentario.js" type="application/javascript"></script>
@@ -184,7 +150,5 @@
         <script src="resources/js/EliminarPost.js" type="application/javascript"></script>
         <script src="resources/js/EliminarComentario.js" type="application/javascript"></script>
 
-        <footer>
-            <a href="post.jsp" > <img class="agregar" src="resources/imgs/agregar.jpg" alt="alt"/></a>
-        </footer>
+        
 </html>
