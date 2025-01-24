@@ -6,6 +6,8 @@ package servlets;
 
 import Exception.FachadaException;
 import beans.UsuarioBean;
+import com.mycompany.dto.ComentarioDTO;
+import com.mycompany.dto.PostDTO;
 import com.mycompany.dto.UsuarioDTO;
 import fachada.Fachada;
 import fachada.IFachada;
@@ -86,7 +88,8 @@ public class EliminarPost extends HttpServlet {
         JSONObject json = new JSONObject(sb.toString());
 
         // Extraer datos del JSON
-        Long postId = Long.valueOf(json.getInt("postId"));
+        Long id = Long.valueOf(json.getInt("postId"));
+        
         UsuarioDTO usuario = null;
         try {
             usuario = accesoDatos.obtenerUsuario(((UsuarioBean) request.getSession().getAttribute("usuario")).getCorreo());
@@ -95,7 +98,15 @@ public class EliminarPost extends HttpServlet {
         }
 
         try {
-            accesoDatos.eliminarPost(postId, usuario);
+            System.out.println(id);
+            PostDTO p = accesoDatos.obtenerPostID(id);
+            if(!(p.getComentarios().isEmpty() || p.getCategoria()==null)){
+                for(ComentarioDTO c: p.getComentarios()){
+                accesoDatos.eliminarComentario(c, usuario);
+            }
+            }
+            
+            accesoDatos.eliminarPost(id, usuario);
         } catch (FachadaException ex) {
             Logger.getLogger(ComentarPost.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -23,6 +23,7 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.json.JSONObject;
 
@@ -67,79 +68,23 @@ public class EditarPost extends HttpServlet {
         System.out.println("EditarPsot");
         System.out.println("EditarPsot");
         IFachada accesoDatos = new Fachada();
-
-        // Leer el cuerpo del JSON enviado por el cliente
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = request.getReader()) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
+        Long postId = Long.valueOf(request.getParameter("postId"));
+        UsuarioDTO usuario = null;
+        try {
+            usuario = accesoDatos.obtenerUsuario(((UsuarioBean) request.getSession().getAttribute("usuario")).getCorreo());
+        } catch (FachadaException ex) {
+            Logger.getLogger(CrearPost.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        // Convertir el cuerpo de la solicitud en un objeto JSON
-        JSONObject json = new JSONObject(sb.toString());
 
         try {
-            // Extraer datos del JSON
-            Long postId = Long.valueOf(json.getInt("postId")); // ID del post
-            String titulo = json.getString("titulo");         // Nuevo título
-            String contenido = json.getString("contenido");   // Contenido del post
-            String categoria = json.optString("opciones", ""); // Opcional: Categoría del post
-            String nombreImagen = json.getString("imagenPost");
-            String rutaRelativa = "";
-// PROCESAMIENTO DE LA IMAGEN
-            try {
-                if (!nombreImagen.isBlank()) {
-                    // Ruta del directorio donde se almacenarán las imágenes
-                    String rutaDirectorio = getServletContext().getRealPath("/resources/imgs/imagenesPost");
-                    File directorioImagenesPost = new File(rutaDirectorio);
 
-                    // Crear el directorio si no existe
-                    if (!directorioImagenesPost.exists()) {
-                        directorioImagenesPost.mkdir();
-                    }
-
-                    // Obtener el archivo
-                    Part imagen = request.getPart("imagenPost");
-
-                    // Referencia del archivo (nombre del archivo)
-                    String referencia = imagen.getSubmittedFileName();
-
-                    // Ruta completa donde se almacenará el archivo en el servidor
-                    String rutaImagen = rutaDirectorio + File.separator + referencia;
-
-                    // Almacenar el archivo en el directorio
-                    imagen.write(rutaImagen);
-
-                    // Guardar la ruta relativa accesible por la aplicación web
-                    rutaRelativa = "imgs/imagenesPost/" + referencia;
-                    request.getSession().setAttribute("imagen", rutaRelativa);
-                }
-            } catch (IOException | ServletException e) {
-                e.printStackTrace();
-            }
-// FIN PROCESAMIENTO IMAGEN
-            // Obtener el usuario actual desde la sesión
-            UsuarioDTO usuario = accesoDatos.obtenerUsuario(
-                    ((UsuarioBean) request.getSession().getAttribute("usuario")).getCorreo()
-            );
-
-            // Crear un objeto PostDTO para actualizar
-            PostDTO postDTO = new PostDTO(Calendar.getInstance(), "Comun", titulo, "", contenido, categoria, rutaRelativa, usuario);
-
-            // Editar el post usando la fachada
-            accesoDatos.editarPost(postDTO, usuario);
-
-            // Redirigir al usuario después de la operación
-            response.sendRedirect("iniciar.jsp");
+            request.setAttribute("posts", accesoDatos.obtenerPostID(postId));
+            RequestDispatcher dispatcher = request.getRequestDispatcher("EditarPost.jsp");
+            dispatcher.forward(request, response);
         } catch (FachadaException ex) {
-            Logger.getLogger(EditarPost.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al editar el post");
-        } catch (Exception ex) {
-            Logger.getLogger(EditarPost.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Error en el procesamiento del JSON");
+            Logger.getLogger(ComentarPost.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     /**
@@ -157,20 +102,10 @@ public class EditarPost extends HttpServlet {
         System.out.println("EditarPsot");
         System.out.println("EditarPsot");
         IFachada accesoDatos = new Fachada();
-        // Leer el cuerpo del JSON enviado por Fetch API
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader reader = request.getReader()) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-            }
-        }
-
-        // Convertir a un objeto JSON
-        JSONObject json = new JSONObject(sb.toString());
-
-        // Extraer datos del JSON
-        Long postId = Long.valueOf(json.getInt("postId"));
+        Long id = Long.valueOf(request.getParameter("postId"));
+        String titulo = request.getParameter("titulo");
+        String tipoPost = request.getParameter("opciones");
+        String cuerpo = request.getParameter("contenido");
         UsuarioDTO usuario = null;
         try {
             usuario = accesoDatos.obtenerUsuario(((UsuarioBean) request.getSession().getAttribute("usuario")).getCorreo());
@@ -178,14 +113,68 @@ public class EditarPost extends HttpServlet {
             Logger.getLogger(CrearPost.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        String rutaRelativa = "";
+// PROCESAMIENTO DE LA IMAGEN
+        try {
+            if (!request.getPart("imagenPost").getSubmittedFileName().isBlank()) {
+                // Ruta del directorio donde se almacenarán las imágenes
+                String rutaDirectorio = getServletContext().getRealPath("/resources/imgs/imagenesPost");
+                File directorioImagenesPost = new File(rutaDirectorio);
+
+                // Crear el directorio si no existe
+                if (!directorioImagenesPost.exists()) {
+                    directorioImagenesPost.mkdir();
+                }
+
+                // Obtener el archivo
+                Part imagen = request.getPart("imagenPost");
+
+                // Referencia del archivo (nombre del archivo)
+                String referencia = imagen.getSubmittedFileName();
+
+                // Ruta completa donde se almacenará el archivo en el servidor
+                String rutaImagen = rutaDirectorio + File.separator + referencia;
+
+                // Almacenar el archivo en el directorio
+                imagen.write(rutaImagen);
+
+                // Guardar la ruta relativa accesible por la aplicación web
+                rutaRelativa = "imgs/imagenesPost/" + referencia;
+                request.getSession().setAttribute("imagen", rutaRelativa);
+            }
+        } catch (IOException | ServletException e) {
+            e.printStackTrace();
+        }
+// FIN PROCESAMIENTO IMAGEN
         try {
 
-            request.setAttribute("posts", accesoDatos.obtenerPostID(postId));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("EditarPost.jsp");
-            dispatcher.forward(request, response);
+            String ancla = request.getParameter("isAnclado");
+
+            if (ancla == null) {
+                PostDTO postNuevo = new PostDTO(Calendar.getInstance(), "Comun", titulo, "", cuerpo, tipoPost, rutaRelativa, usuario);
+                postNuevo.setId(id);
+                accesoDatos.editarPost(postNuevo, usuario);
+            } else {
+                PostDTO postNuevo = new PostDTO(Calendar.getInstance(), "Anclado", titulo, "", cuerpo, tipoPost, rutaRelativa, usuario);
+                postNuevo.setId(id);
+                accesoDatos.editarPost(postNuevo, usuario);
+
+            }
+
         } catch (FachadaException ex) {
-            Logger.getLogger(ComentarPost.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al crear la publicacion");
         }
+
+        HttpSession session = request.getSession();
+        String returnTo = (String) session.getAttribute("returnTo");
+
+        if (returnTo != null) {
+            session.removeAttribute("returnTo");
+            response.sendRedirect(returnTo);
+        } else {
+            response.sendRedirect("inicio.jsp");
+        }
+
     }
 
     /**

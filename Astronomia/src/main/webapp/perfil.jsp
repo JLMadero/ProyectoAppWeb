@@ -51,7 +51,7 @@
                         <p class="tituloPost">${post.getTitulo()}</p>
                         <img class="fotoPost" src="./resources/${post.getImagen()}" alt="alt"/>
                         <c:if test="${sessionScope.usuario.tipo == 'administrador'}">
-                            <form id="form-comentario-${post.id}" class="form-comentarioEditar">
+                            <form action="EditarPost" method="GET" class="form-comentarioEditar">
                                 <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
                                 <button class="editar" type="submit">Editar</button>
                             </form>
@@ -63,7 +63,7 @@
                         </c:if>
                         <div>
                             <c:if test="${sessionScope.usuario.tipo != 'administrador'}">
-                                <form id="form-comentario-${post.id}" class="form-comentarioEditar">
+                                <form action="EditarPost" method="GET" class="form-comentarioEditar">
                                     <input type="hidden" id="postId-${post.id}" name="postId" value="${post.id}">
                                     <button class="editar" type="submit">Editar</button>
                                 </form>
@@ -75,7 +75,6 @@
             </section> 
         </main>
         <script src="resources/js/EliminarPost.js" type="application/javascript"></script>
-        <script src="resources/js/EditarPost.js" type="application/javascript"></script>
 
     </body>
 </html>

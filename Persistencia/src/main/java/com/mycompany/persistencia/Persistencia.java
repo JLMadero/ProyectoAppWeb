@@ -44,8 +44,8 @@ public class Persistencia {
         Calendar fecha = Calendar.getInstance();
 
         // Probar registrarUsuario
-//        UsuarioDTO nuevoUsuario = new UsuarioDTO("jose luis", "madero", "lopez", "madero@gmail.com", "123", "6441393608", "Madero", "foto", "obregon", fecha, "masculino", new MunicipioDTO("cajeme", new EstadoDTO("Sonora")));
-//        fachada.registrarUsuario(nuevoUsuario);
+////        UsuarioDTO nuevoUsuario = new UsuarioDTO("jose luis", "madero", "lopez", "madero@gmail.com", "123", "6441393608", "Madero", "foto", "obregon", fecha, "masculino", new MunicipioDTO("cajeme", new EstadoDTO("Sonora")));
+////        fachada.registrarUsuario(nuevoUsuario);
 //        System.out.println("Usuario registrado: " + (fachada.obtenerUsuario("madero@gmail.com")));
 
         
@@ -130,7 +130,7 @@ public class Persistencia {
 //        fachada.eliminarComentario(new ComentarioDTO(9L, fecha, "", new NormalDTO("madero@gmail.com", "Madero")), usuarioBuscado);
 
             //eliminar post
-//            fachada.eliminarPost(1L, usuarioBuscado);
+            fachada.eliminarPost(14L, usuarioBuscado);
 
             // comentar comentario
 //            fachada.responderComentario(new ComentarioDTO(fecha, "asfasf", fachada.obtenerPostID(1L), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerComentarioID(1L));

@@ -84,6 +84,7 @@
                                 <!-- Comentarios y acciones para usuarios comunes -->
                                 <div class="comentariosTodos">
                                     <c:forEach items="${post.comentarios}" var="comentario">
+                                        
                                         <p class="coments">@${comentario.nombreUsuario}: ${comentario.contenido}</p>
                                         <c:forEach items="${comentario.respuesta}" var="respuesta">
                                             <p class="coments">@${respuesta.nombreUsuario}: ${respuesta.contenido}</p>

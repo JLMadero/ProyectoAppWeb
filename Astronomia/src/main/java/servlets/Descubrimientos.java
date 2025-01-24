@@ -97,7 +97,7 @@ public class Descubrimientos extends HttpServlet {
         IFachada accesoDatos = new Fachada();
         try {
             List<ComentarioDTO> com = accesoDatos.obtenerComentariosPost(dto.getId());
-            if(!com.isEmpty()){
+            if(!com.isEmpty() || com == null){
                 dto.setComentarios(com);
             }
             

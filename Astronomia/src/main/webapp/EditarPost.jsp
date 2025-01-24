@@ -3,7 +3,7 @@
     Created on : 23 ene 2025, 19:31:07
     Author     : jl4ma
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -33,11 +33,12 @@
             <section class="right-side">
                 <div class="crearPost">
                     <h2>Nuevo Post:</h2>
-                    <form class="form-comentarioEditarPost" enctype="multipart/form-data">
+                    <form action="EditarPost" method="POST" enctype="multipart/form-data">
                         <label for="titulo">Titulo</label>
-                        <input type="text" name="titulo" value="${posts.titulo}" required>
+                        <input type="hidden"  name="postId" value="${requestScope.posts.id}">
+                        <input type="text" name="titulo" value="${requestScope.posts.titulo}" required>
                         <label for="contenido">Contenido</label>
-                        <textarea id="contenido" name="contenido" required>${posts.contenido}</textarea>
+                        <textarea id="contenido" name="contenido" required>${requestScope.posts.contenido}</textarea>
                         <div class="imgTipo">
                             <div>
                                 <label for="imagen">Imagen</label>

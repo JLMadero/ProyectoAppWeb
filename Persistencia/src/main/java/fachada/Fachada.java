@@ -546,11 +546,7 @@ public class Fachada implements IFachada {
     }
 
     private PostDTO acortarPostDTO(Post post) {
-        PostDTO postCorto = new PostDTO(
-                post.getId(),
-                post.getFechaHoraCreacion(),
-                post.getContenido(),
-                (NormalDTO) convertirUsuarioAUsuarioDTO(post.getUsuario()));
+        PostDTO postCorto = new PostDTO(post.getId(), post.getFechaHoraCreacion(), post.getTipoPost(), post.getTitulo(), "", post.getContenido(), post.getContenido(), convertirUsuarioAUsuarioDTO(post.getUsuario()));
         return postCorto;
     }
 
