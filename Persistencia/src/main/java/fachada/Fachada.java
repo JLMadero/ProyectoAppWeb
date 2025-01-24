@@ -212,6 +212,7 @@ public class Fachada implements IFachada {
         }
 
             postExistente.setTitulo(postDTO.getTitulo());
+            postExistente.setTipoPost(postDTO.getTipoPost());
             postExistente.setSubtitulo(postDTO.getSubtitulo());
             postExistente.setContenido(postDTO.getContenido());
             postExistente.setCategoria(categoria);

@@ -44,8 +44,8 @@ public class Persistencia {
         Calendar fecha = Calendar.getInstance();
 
         // Probar registrarUsuario
-////        UsuarioDTO nuevoUsuario = new UsuarioDTO("jose luis", "madero", "lopez", "madero@gmail.com", "123", "6441393608", "Madero", "foto", "obregon", fecha, "masculino", new MunicipioDTO("cajeme", new EstadoDTO("Sonora")));
-////        fachada.registrarUsuario(nuevoUsuario);
+        UsuarioDTO nuevoUsuario = new UsuarioDTO("jose luis", "madero", "lopez", "madero@gmail.com", "123", "6441393608", "Madero", "foto", "obregon", fecha, "masculino", new MunicipioDTO("cajeme", new EstadoDTO("Sonora")));
+        fachada.registrarUsuario(nuevoUsuario);
 //        System.out.println("Usuario registrado: " + (fachada.obtenerUsuario("madero@gmail.com")));
 
         
@@ -130,15 +130,15 @@ public class Persistencia {
 //        fachada.eliminarComentario(new ComentarioDTO(9L, fecha, "", new NormalDTO("madero@gmail.com", "Madero")), usuarioBuscado);
 
             //eliminar post
-            fachada.eliminarPost(14L, usuarioBuscado);
+//            fachada.eliminarPost(14L, usuarioBuscado);
 
             // comentar comentario
 //            fachada.responderComentario(new ComentarioDTO(fecha, "asfasf", fachada.obtenerPostID(1L), new NormalDTO("madero@gmail.com", "Madero")), fachada.obtenerComentarioID(1L));
        
             //anclar
-//              IConexion conexion = new Conexion();
-//                 AbstractDAOFactory fabrica = new DAOFactory(conexion);
-//                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("madero26@gmail.com", "a", "b", "c", "Maderito", AESEncriptador.encriptar("123") , "1", "resources/imgs/avatares/planeta0.jpeg.jpg", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
+              IConexion conexion = new Conexion();
+                 AbstractDAOFactory fabrica = new DAOFactory(conexion);
+                 fabrica.getUsuarioDAO().registrarUsuario(new Administrador("madero26@gmail.com", "a", "b", "c", "Maderito", AESEncriptador.encriptar("123") , "1", "resources/imgs/avatares/planeta0.jpeg.jpg", "obre", fecha, "m", new Municipio(1L, "ASASF", new Estado("afaf"))));
                  
 //            fachada.anclarPost(1L, "madero26@gmail.com");
 //            fachada.desanclarPost(1L);
